@@ -1,0 +1,43 @@
+unit view.vendas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, Provider.constants, view.funcionarios;
+
+type
+  TviewVendas = class(TviewBaseListas)
+    lblNomeVendedor: TLabel;
+    edtCodVendedor: TEdit;
+    edtEscolhaProd: TEdit;
+    lblEscolhaProduto: TLabel;
+    edtQtd: TEdit;
+    edtValorUnit: TEdit;
+    edtSubTotal: TEdit;
+    lblQtd: TLabel;
+    lblValorUnit: TLabel;
+    lblSubTotal: TLabel;
+    DBGrid1: TDBGrid;
+    edtSubTotais: TEdit;
+    lblSubTotais: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewVendas: TviewVendas;
+
+implementation
+
+uses
+  servico.cadastro;
+
+{$R *.dfm}
+
+end.

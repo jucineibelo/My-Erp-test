@@ -1,0 +1,221 @@
+inherited viewFuncionarios: TviewFuncionarios
+  Caption = 'viewFuncionarios'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited panelTop: TPanel
+    inherited lblTitulo: TLabel
+      Width = 903
+      Height = 29
+      Caption = 'Funcion'#225'rios'
+      ExplicitWidth = 109
+    end
+  end
+  inherited pnlLinhaFundo: TPanel
+    inherited PageControl1: TPageControl
+      inherited tbsCadastro: TTabSheet
+        OnShow = tbsCadastroShow
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
+        inherited Panel1: TPanel
+          inherited lblTituloCadastro: TLabel
+            Left = 394
+            Width = 263
+            Caption = '[ Cadastro de Funcion'#225'rios]'
+            ExplicitLeft = 394
+            ExplicitWidth = 263
+          end
+        end
+        object Panel2: TPanel
+          Left = 83
+          Top = 99
+          Width = 849
+          Height = 286
+          Align = alCustom
+          BevelOuter = bvNone
+          Color = 15718307
+          ParentBackground = False
+          TabOrder = 2
+          object lblSenha: TLabel
+            Left = 470
+            Top = 179
+            Width = 37
+            Height = 13
+            Caption = 'SENHA:'
+            FocusControl = edtSenha
+          end
+          object lblUsuario: TLabel
+            Left = 152
+            Top = 179
+            Width = 50
+            Height = 13
+            Caption = 'USUARIO:'
+            FocusControl = edtUsuario
+          end
+          object lblSetor: TLabel
+            Left = 165
+            Top = 141
+            Width = 37
+            Height = 13
+            Caption = 'SETOR:'
+            FocusControl = edtSetor
+          end
+          object lblCargo: TLabel
+            Left = 467
+            Top = 141
+            Width = 40
+            Height = 13
+            Caption = 'CARGO:'
+            FocusControl = edtCargo
+          end
+          object lblNome: TLabel
+            Left = 169
+            Top = 99
+            Width = 33
+            Height = 13
+            Caption = 'NOME:'
+            FocusControl = edtNome
+          end
+          object lblCodi: TLabel
+            Left = 157
+            Top = 64
+            Width = 45
+            Height = 13
+            Caption = 'C'#211'DIGO:'
+          end
+          object dbTxtCodi: TDBText
+            Left = 208
+            Top = 63
+            Width = 65
+            Height = 17
+            DataField = 'CODIGO'
+            DataSource = DmConexao.dsFuncionarios
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblData: TLabel
+            Left = 461
+            Top = 64
+            Width = 31
+            Height = 13
+            Caption = 'DATA:'
+            FocusControl = edtCargo
+          end
+          object edtSenha: TDBEdit
+            Left = 513
+            Top = 176
+            Width = 200
+            Height = 21
+            DataField = 'SENHA'
+            DataSource = DmConexao.dsFuncionarios
+            PasswordChar = '*'
+            TabOrder = 0
+          end
+          object edtUsuario: TDBEdit
+            Left = 208
+            Top = 176
+            Width = 200
+            Height = 21
+            DataField = 'USUARIO'
+            DataSource = DmConexao.dsFuncionarios
+            TabOrder = 4
+          end
+          object edtSetor: TDBEdit
+            Left = 208
+            Top = 136
+            Width = 200
+            Height = 21
+            DataField = 'SETOR'
+            DataSource = DmConexao.dsFuncionarios
+            TabOrder = 2
+          end
+          object edtCargo: TDBEdit
+            Left = 513
+            Top = 136
+            Width = 200
+            Height = 21
+            DataField = 'CARGO'
+            DataSource = DmConexao.dsFuncionarios
+            TabOrder = 3
+          end
+          object edtNome: TDBEdit
+            Left = 208
+            Top = 96
+            Width = 394
+            Height = 21
+            DataField = 'NOME'
+            DataSource = DmConexao.dsFuncionarios
+            TabOrder = 1
+          end
+          object edtData: TDBEdit
+            Left = 498
+            Top = 61
+            Width = 104
+            Height = 21
+            DataField = 'DATA_CADASTRO'
+            DataSource = DmConexao.dsFuncionarios
+            TabOrder = 5
+          end
+        end
+      end
+      inherited tsConsulta: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
+        object DBGrid1: TDBGrid
+          Left = 0
+          Top = 65
+          Width = 1012
+          Height = 370
+          Align = alClient
+          DataSource = DmConexao.dsFuncionarios
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'CODIGO'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NOME'
+              Width = 250
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'USUARIO'
+              Width = 250
+              Visible = True
+            end>
+        end
+      end
+    end
+  end
+  inherited panelRodape: TPanel
+    inherited pnlBotoesButton: TPanel
+      inherited btnEditar: TSpeedButton
+        Enabled = False
+        Visible = False
+      end
+      inherited btnSalvar: TSpeedButton
+        OnClick = btnSalvarClick
+      end
+      inherited btnExcluir: TSpeedButton
+        Enabled = False
+        Visible = False
+      end
+    end
+  end
+end

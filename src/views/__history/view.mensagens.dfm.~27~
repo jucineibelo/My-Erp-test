@@ -1,0 +1,185 @@
+inherited viewMensagens: TviewMensagens
+  Caption = 'Mensagens'
+  ClientHeight = 111
+  ClientWidth = 705
+  ExplicitWidth = 721
+  ExplicitHeight = 150
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlMensagens: TPanel
+    Left = 0
+    Top = 0
+    Width = 150
+    Height = 111
+    Align = alLeft
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitLeft = -3
+    object Image1: TImage
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 144
+      Height = 105
+      Align = alClient
+      Center = True
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000600000
+        00600806000000E29877380000000467414D410000B18F0BFC61050000000662
+        4B4744000000000000F943BB7F0000000970485973000000600000006000F06B
+        42CF000004774944415478DAED9BBB6B14511487CF24283E403BB1104410A3A0
+        8510B050C44A90F421558C18520AB27F40622FE9438A8C0F90588B8D551004D1
+        4210F1818D602156A2481035E3C91A21ECCEF3CE39F777AE73BF668764333977
+        BFECEC6E3E6E421128097A80AE1305808902C0440160A2003051009828004CD0
+        02B2942628A32CB9420FD1B3B812AC806C8976D02E7AC90246E92B9D4CAED10F
+        F44C2E842B20A51EDFDCDC5A452FB94C8BE8995C085240769B0ED006BDE3C3FD
+        5B5FFAC6CF84637C29FA849EAD29610A4869996F660756B2CCCF8239F46C4D09
+        4E40768B4EF35FFB333E1C1DF8D6068DD099649A9EA3676C427802525AE39BF3
+        05AB7942D3742E495851200425205BA1299EF85EC58AA6F852B48A9EB52EC108
+        C8EED36E5AA7D7FCB77DB8E2AE1FF952749C2F45DFD133D7211C012BB4C0D3CE
+        D7BB33DDE077440BE899EB108480EC2E1DA25FF4860FF7D6FC9175BEFF896496
+        3EA067AF220C0169FF9A3ED9EC8768959F0553E8D9AB302F801FFCB37CF3D869
+        D611BAC0AF056BE83594615A4036CF0FE1117ACA87E38EA778417B683C99A4DF
+        E8B514615B40DAFF64BBD4EE2434C797A265F45A8A302B805F78F7F10BE95B3E
+        3CD8F2549F59C2184BF8825E531E7605A4FDFF6E5E9739192DB2801E7A4D7998
+        1490DDA1A37CD57EC5873B854EF993CF772AB9DA7F4699C2A680B45FB82E099F
+        F651324317D16B1BC49C807E66247AA073729AB0962F4D09D89619C7947EC57B
+        6BF9D29680ED99516FC5A6F2A519013999510B53F9D28E80BCCCA8B76A33F9D2
+        848092CCA885997C6943405966D45BB9897C0917502B33EAAD1E9E2FA1021A64
+        462DE0F9122BA04966FC37F04CF9CC7C396B764901E74B980087CCF877606901
+        E07C8913E09219494500345F4204B4C98C2A023601E54BEF02DA66463501A07C
+        E95F40CBCCA82800922FBD0A90C88CAA0200F9D2AF0081CCA82CC07BBEF42640
+        2A33AA0BF09C2FFD0910CA8C1E046CE22D5F7A112099193D09F0962FD5054867
+        466F023CE54B7D01C299D1A3002FF95255804666F42AC043BED415A090193D0B
+        50CF976A02B432A37701CAF9524F805266040850CD972A023433234440FF17EB
+        E44B7101DA99112640295FCA0B70C88C8D06C60950C997A2025C33634088E74B
+        59018E99312884F3A5988056BB194343305F8A3C5802BB1943432C5FCA0890D8
+        CD181A42F9B2B500C1DD8CA121922FDB0B90DCCD181A02F9B2950085DD8CA1D1
+        3A5FB613A0B39BB17C60E407B17C5AE54B6701AABB19CB06B627A055BE7412E0
+        613763F1C01605B4C8976E027CEC662C1AD8A600E77CD95880C7DD8CF9035B15
+        E0982F9B0BF0B99B316F60BB029CF265230180DD8CC3035B16E0902F9B0940EC
+        661C1CD8B680C6F9B2B600E86EC6D068902F6B0930B09B31346AE7CB7A029433
+        E37F49CD7C5929A00399518B5AF9B25A401732A31635F265D53B8AEE64462D2A
+        F265E103DBC1CCA84569BE2C16D0C5CCA84549BECC15D0E1CCA84561BECC17D0
+        E5CCA84541BE1C121033A31AB9F972580020337688A17C19DF5E828902C04401
+        60A2003051009828004C1400260A001305808902C0440160A200307F00C092EF
+        704B8000160000002574455874646174653A63726561746500323032332D3031
+        2D31325431393A30383A31392B30303A3030B27F4BED00000025744558746461
+        74653A6D6F6469667900323032332D30312D31325431393A30383A31392B3030
+        3A3030C322F3510000000049454E44AE426082}
+      Visible = False
+      ExplicitLeft = 24
+      ExplicitTop = 6
+      ExplicitWidth = 105
+    end
+  end
+  object pnlConteudo: TPanel
+    Left = 150
+    Top = 0
+    Width = 555
+    Height = 111
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 1
+    object pnlTitulo: TPanel
+      Left = 0
+      Top = 0
+      Width = 555
+      Height = 59
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+      object lblTitulo: TLabel
+        Left = 0
+        Top = 0
+        Width = 555
+        Height = 59
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'lblTitulo'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitWidth = 78
+        ExplicitHeight = 30
+      end
+    end
+    object pnlBotoes: TPanel
+      Left = 0
+      Top = 76
+      Width = 555
+      Height = 35
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 1
+      object btnOK: TSpeedButton
+        Left = 443
+        Top = 0
+        Width = 112
+        Height = 35
+        Cursor = crHandPoint
+        Align = alRight
+        Caption = 'OK'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 408
+      end
+      object btnSIM: TSpeedButton
+        Left = 219
+        Top = 0
+        Width = 112
+        Height = 35
+        Cursor = crHandPoint
+        Align = alRight
+        Caption = 'SIM'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 213
+        ExplicitTop = 3
+      end
+      object btnNAO: TSpeedButton
+        Left = 331
+        Top = 0
+        Width = 112
+        Height = 35
+        Cursor = crHandPoint
+        Align = alRight
+        Caption = 'N'#195'O'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 296
+      end
+    end
+    object mmoTexto: TMemo
+      AlignWithMargins = True
+      Left = 3
+      Top = 62
+      Width = 549
+      Height = 11
+      Align = alClient
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 2
+    end
+  end
+end

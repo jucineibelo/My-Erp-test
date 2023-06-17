@@ -1,0 +1,43 @@
+unit servico.conexao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Data.DBXFirebird,
+  Data.SqlExpr,
+  Datasnap.DBClient,
+  SimpleDS, Data.DB;
+
+type
+  TDMConexao = class(TDataModule)
+    SQLConexao: TSQLConnection;
+  //  procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMConexao: TDMConexao;
+
+implementation
+
+uses
+  servico.cadastro;
+
+{ %CLASSGROUP 'Vcl.Controls.TControl' }
+
+{$R *.dfm}
+
+procedure TDMConexao.DataModuleCreate(Sender: TObject);
+
+
+
+end;
+
+end.
+
+

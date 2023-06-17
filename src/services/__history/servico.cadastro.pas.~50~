@@ -1,0 +1,46 @@
+unit servico.cadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Datasnap.DBClient,
+  SimpleDS, Data.DBXFirebird;
+
+type
+  TDMTabelas = class(TDataModule)
+    sdsClientes: TSimpleDataSet;
+    sdsClientesPESSOA_ID: TIntegerField;
+    sdsClientesPESSOA_RAZAO: TStringField;
+    sdsClientesPESSOA_TELEFONE: TStringField;
+    sdsClientesPESSOA_CPF_CNPJ: TStringField;
+    sdsClientesPESSOA_IE_RG: TStringField;
+    sdsClientesPESSOA_OBSERVACAO: TStringField;
+    sdsClientesPESSOA_ENDERECO: TStringField;
+    sdsClientesPESSOA_CIDADE: TStringField;
+    sdsClientesPESSOA_ESTADO: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMTabelas: TDMTabelas;
+
+implementation
+
+uses
+  servico.conexao;
+
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
+
+
+

@@ -1,0 +1,72 @@
+unit DmPrincipal;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Data.DB,
+  Data.SqlExpr,
+  Data.DBXFirebird,
+  System.IniFiles; // essa merda aqui foi necessaria pra conseguir usar IniFile
+
+type
+  TDMConexao = class(TDataModule)
+    SQLConexao: TSQLConnection;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMConexao: TDMConexao;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+//procedure TDMConexao.DataModuleCreate(Sender: TObject);
+//var
+//  LIniFile: TIniFile;
+//  LDataBase: string;
+//  LUserName: string;
+//  LPassword: string;
+//  LServidor: string;
+//  LPorta: Integer;
+//  LCaminho: string;
+//
+//begin
+//
+//  try
+//    SQLConexao.Connected := False;
+//
+//    LCaminho := ExtractFileDir(ParamStr(0)) + '\Config.ini';
+//
+//    LIniFile := TIniFile.Create(LCaminho);
+//
+//    LDataBase := LIniFile.ReadString('BASE', 'Database', LDataBase);
+//    LServidor := LIniFile.ReadString('BASE', 'Servidor', LServidor);
+//    LPorta := LIniFile.ReadInteger('BASE', 'Porta', LPorta);
+//
+//    LUserName := 'SYSDBA';
+//    LPassword := 'masterkey';
+//
+//    SQLConexao.Params.Values['Database'] := LDataBase;
+//    SQLConexao.Params.Values['User_Name'] := LUserName;
+//    SQLConexao.Params.Values['Password'] := LPassword;
+//    SQLConexao.Params.Values['Server'] := LServidor;
+//    SQLConexao.Params.Values['Porta'] := LPorta.ToString;
+//
+//    SQLConexao.Connected := True;
+//
+//  finally
+//    FreeAndNil(LIniFile);
+//
+//  end;
+//
+//end;
+
+end.

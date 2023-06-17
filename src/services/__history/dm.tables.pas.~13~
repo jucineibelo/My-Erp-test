@@ -1,0 +1,39 @@
+unit dm.tables;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DBXFirebird, Data.DB, Datasnap.DBClient,
+  SimpleDS;
+
+type
+  TDmTabelas = class(TDataModule)
+    sdsClientes: TSimpleDataSet;
+    sdsClientesPESSOA_ID: TIntegerField;
+    sdsClientesPESSOA_RAZAO: TStringField;
+    sdsClientesPESSOA_TELEFONE: TStringField;
+    sdsClientesPESSOA_CPF_CNPJ: TStringField;
+    sdsClientesPESSOA_IE_RG: TStringField;
+    sdsClientesPESSOA_OBSERVACAO: TStringField;
+    sdsClientesPESSOA_ENDERECO: TStringField;
+    sdsClientesPESSOA_CIDADE: TStringField;
+    sdsClientesPESSOA_ESTADO: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmConexao: TDmTabelas;
+
+implementation
+
+uses
+  dm.conexao;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,14 @@
+object DataModuleTabelas: TDataModuleTabelas
+  OldCreateOrder = False
+  Height = 373
+  Width = 415
+  object sdsClientes: TSimpleDataSet
+    Aggregates = <>
+    Connection = DM.SQLConexao
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 48
+    Top = 40
+  end
+end

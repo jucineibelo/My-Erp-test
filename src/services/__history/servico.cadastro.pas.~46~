@@ -1,0 +1,80 @@
+unit servico.cadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TServicoCadastro = class(TDataModule)
+    QueryPessoas: TFDQuery;
+    QueryEnderecos: TFDQuery;
+    QueryEnderecosEND_COD: TIntegerField;
+    QueryEnderecosEND_PESSOA: TIntegerField;
+    QueryEnderecosEND_CEP: TStringField;
+    QueryEnderecosEND_CIDADE: TStringField;
+    QueryEnderecosEND_ENDERECO: TStringField;
+    QueryEnderecosEND_BAIRRO: TStringField;
+    QueryEnderecosEND_OBSERVACAO: TStringField;
+    QueryEnderecosEND_NUMERO: TStringField;
+    QueryFornecedor: TFDQuery;
+    QueryPessoasPESSOA_ID: TIntegerField;
+    QueryPessoasPESSOA_RAZAO: TStringField;
+    QueryPessoasPESSOA_TELEFONE: TStringField;
+    QueryPessoasPESSOA_CPF_CNPJ: TStringField;
+    QueryPessoasPESSOA_IE_RG: TStringField;
+    QueryPessoasPESSOA_OBSERVACAO: TStringField;
+    QueryFornecedorFORNECEDOR_ID: TIntegerField;
+    QueryFornecedorFORNECEDOR_NOME: TStringField;
+    QueryFornecedorFORNECEDOR_CPF_CNPJ: TStringField;
+    QueryFornecedorFORNECEDOR_TELEFONE: TStringField;
+    QueryFornecedorFORNECEDOR_OBSERVACAO: TStringField;
+    QueryProdutos: TFDQuery;
+    QueryProd2: TFDQuery;
+    QueryProdutosPRODUTO_ID: TIntegerField;
+    QueryProdutosPRODUTO_NOME: TStringField;
+    QueryProdutosPRODUTO_NOMEPOPULAR: TStringField;
+    QueryProdutosPRODUTO_CODIGOBARRA: TStringField;
+    QueryProdutosPRODUTO_REFERENCIA: TStringField;
+    QueryProdutosPRODUTO_GRUPO: TIntegerField;
+    QueryProdutosPRODUTO_SUBGRUPO: TIntegerField;
+    QueryProdutosPRODUTO_NCM: TStringField;
+    QuerySitTrib: TFDQuery;
+    QueryFuncionarios: TFDQuery;
+    QueryFuncionariosFUNC_ID: TIntegerField;
+    QueryFuncionariosFUNC_NOME: TStringField;
+    QueryFuncionariosFUNC_TELEFONE: TStringField;
+    QueryFuncionariosFUNC_CPF: TStringField;
+    QueryFuncionariosFUNC_OBSERVACAO2: TStringField;
+    QueryProd2PRODUTO_ID_2: TIntegerField;
+    QueryProd2PRODUTO_ID: TIntegerField;
+    QueryProd2PRODUTO_CUSTO: TBCDField;
+    QueryProd2PRODUTO_AVISTA: TBCDField;
+    QueryProd2PRODUTO_A_PRAZO: TBCDField;
+    QueryProd2PRODUTO_ESTOQUE: TBCDField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ServicoCadastro: TServicoCadastro;
+
+implementation
+
+uses
+  servico.conexao;
+
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
+
+
+

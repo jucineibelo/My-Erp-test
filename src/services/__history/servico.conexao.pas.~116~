@@ -1,0 +1,89 @@
+unit servico.conexao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Data.DBXFirebird,
+  Data.SqlExpr,
+  Datasnap.DBClient,
+  SimpleDS, Data.DB;
+
+type
+  TDMConexao = class(TDataModule)
+    SQLConexao: TSQLConnection;
+  //  procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMConexao: TDMConexao;
+
+implementation
+
+uses
+  servico.cadastro;
+
+{ %CLASSGROUP 'Vcl.Controls.TControl' }
+
+{$R *.dfm}
+
+procedure TDMConexao.DataModuleCreate(Sender: TObject);
+
+var
+  LIniFile: TIniFile;
+  LDataBase: string;
+  LUserName: string;
+  LPassword: string;
+  LServidor: string;
+  LPorta: Integer;
+  LCaminho: string;
+
+begin
+
+  try
+    SQLConexao.Connected := False;
+
+    LCaminho := ExtractFileDir(ParamStr(0)) + '\Config.ini';
+
+    LIniFile := TIniFile.Create(LCaminho);
+
+    LDataBase := LIniFile.ReadString('BASE', 'Database', LDataBase);
+    LServidor := LIniFile.ReadString('BASE', 'Servidor', LServidor);
+    LPorta := LIniFile.ReadInteger('BASE', 'Porta', LPorta);
+
+    LUserName := 'SYSDBA';
+    LPassword := 'masterkey';
+
+    SQLConexao.Params.Values['Database'] := LDataBase;
+    SQLConexao.Params.Values['User_Name'] := LUserName;
+    SQLConexao.Params.Values['Password'] := LPassword;
+    SQLConexao.Params.Values['Server'] := LServidor;
+    SQLConexao.Params.Values['Porta'] := LPorta.ToString;
+
+    SQLConexao.Connected := True;
+
+  finally
+    FreeAndNil(LIniFile);
+
+  end;
+
+   Carrego minha filial
+
+  QueryFilial.Close;
+  QueryFilial.Params[0].AsInteger := 1;
+  QueryFilial.Open();
+
+
+  iCod_filial := QueryFilialFIL_COD.AsInteger;
+  sRazao_filial := QueryFilialFIL_RAZAO.AsString;
+
+end;
+
+end.
+
+

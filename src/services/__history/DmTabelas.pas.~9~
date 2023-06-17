@@ -1,0 +1,26 @@
+unit DmTabelas;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient, SimpleDS, DmPrincipal,
+  Data.DBXFirebird;
+
+type
+  TDataModuleTabelas = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModuleTabelas: TDataModuleTabelas;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

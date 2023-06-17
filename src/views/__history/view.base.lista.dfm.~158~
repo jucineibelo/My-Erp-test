@@ -1,0 +1,355 @@
+inherited viewBaseListas: TviewBaseListas
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'viewBaseListas'
+  ClientHeight = 550
+  ClientWidth = 1024
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  ExplicitWidth = 1024
+  ExplicitHeight = 550
+  PixelsPerInch = 96
+  TextHeight = 13
+  object panelTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 1024
+    Height = 35
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 9135640
+    ParentBackground = False
+    TabOrder = 0
+    object lblTitulo: TLabel
+      AlignWithMargins = True
+      Left = 38
+      Top = 3
+      Width = 903
+      Height = 29
+      Cursor = crHandPoint
+      Align = alClient
+      Caption = 'lblTitulo'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnMouseDown = lblTituloMouseDown
+      ExplicitWidth = 70
+      ExplicitHeight = 25
+    end
+    object panelIcone: TPanel
+      Left = 0
+      Top = 0
+      Width = 35
+      Height = 35
+      Align = alLeft
+      Color = clWindow
+      ParentBackground = False
+      TabOrder = 0
+      object imgTitulo: TImage
+        Left = 1
+        Top = 1
+        Width = 33
+        Height = 33
+        Align = alClient
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+          003008060000005702F9870000000467414D410000B18F0BFC61050000000662
+          4B4744000000000000F943BB7F0000000970485973000000600000006000F06B
+          42CF000002804944415478DA63D4DCF6ED3F031E70CDBA81612081D651FCF633
+          8E7A60D40334F6C06007A31E1868303C3D20C1F691A142692783B5C05D066EE6
+          9F03EAC0AF7FD9194E7C5064E87BE8C270FFBB08610F801CBFDE7006033FCBF7
+          0175383AF8F4878321E07C26C38B5FFCF83D30416315839BF0B581762F56B0F3
+          AD3643E18D50FC1E386DD13EE0C90617F8F29783C1EC44057E0F0C74C54508A0
+          576C34F3C0C5CF320C173ECB82D906BC8F19F4799F0C0D0F7C0666B6925B210C
+          87DFABA088DB09DE66E8565FC3C04B61F2A4B907D2AFC560381E06EC819E98AE
+          B574F07A00946C222FA5E055B3527F36832ECFD3C1E981F94FAD18BA1FB8E155
+          53A6B0932141FAF8D0F540B9E24E8678A941EA81219F844020E35A34C3A1F7AA
+          58E51C846E314CD35C4691F9B42F46818DAFB29B210C07D13C01727CA7DADAC1
+          5F8CC2C0E52FD20CE73EC9313032FC6730E27BC4A0C3F38C2AE6D2CD03B402A3
+          1E186840330F7CFBC7C67004D88438F3519EE1F6373186D7BF79185EFC80743E
+          24383E3288B27E6150E57AC560C2FF90C146F00E0317D3AFC1E1813BDF4419E6
+          3EB50677367EFC65254A0F07F36F0677E1AB0C29D2C71894819E1A100FFC0796
+          2F331EDB314C7B6CCFF0F73F1359A1C9CCF88F2147EE00439ACC61706945570F
+          10D36C201690D2BCA09A075CCE14303CFB2940150F08B17E633862D6455F0F10
+          1AB32415906BEFA80786AC07060A0C7F0F0CE6812D5053DDFC44257E0F4CD658
+          C1E02C7C63A0DD8A15EC78A3CD507493C0D0A222E71B86E57A7318F8587E0CB4
+          7B51C0873F9C0C81E733195EFEE2C3EF0110008D50972BED020FAFF3300FAC47
+          40E3A147DE2B3374DE77C7703C4E0F0C2530EA818106C3DF03035DB18DCED48F
+          7A80C61E0000BA7AAB00DC72DBCA0000002574455874646174653A6372656174
+          6500323032332D30312D30395431363A35393A30392B30303A30301A4DB9C400
+          00002574455874646174653A6D6F6469667900323032332D30312D3039543136
+          3A35393A30392B30303A30306B1001780000000049454E44AE426082}
+        ExplicitLeft = -1
+        ExplicitTop = 0
+      end
+    end
+    object pnlFechar: TPanel
+      Left = 944
+      Top = 0
+      Width = 80
+      Height = 35
+      Align = alRight
+      BevelOuter = bvNone
+      TabOrder = 1
+      object btnSair: TSpeedButton
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 74
+        Height = 35
+        Cursor = crHandPoint
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Caption = '[ SAIR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clYellow
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnSairClick
+        ExplicitLeft = 72
+        ExplicitWidth = 110
+        ExplicitHeight = 33
+      end
+    end
+  end
+  object pnlLinhaFundo: TPanel
+    Left = 0
+    Top = 35
+    Width = 1024
+    Height = 465
+    Align = alClient
+    Color = 9135640
+    ParentBackground = False
+    TabOrder = 1
+    object PageControl1: TPageControl
+      AlignWithMargins = True
+      Left = 2
+      Top = 1
+      Width = 1020
+      Height = 463
+      Margins.Left = 1
+      Margins.Top = 0
+      Margins.Right = 1
+      Margins.Bottom = 0
+      ActivePage = tbsCadastro
+      Align = alClient
+      TabOrder = 0
+      object tbsCadastro: TTabSheet
+        Caption = 'Cadastro'
+        ImageIndex = 1
+        object Panel1: TPanel
+          Left = 0
+          Top = 0
+          Width = 1012
+          Height = 60
+          Align = alTop
+          BevelOuter = bvNone
+          Color = 15718307
+          ParentBackground = False
+          TabOrder = 0
+          ExplicitLeft = 16
+          ExplicitTop = 3
+          object lblTituloCadastro: TLabel
+            Left = 398
+            Top = 16
+            Width = 193
+            Height = 30
+            Align = alCustom
+            Alignment = taCenter
+            Caption = '[T'#237'tulo do Cadastro]'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+        end
+        object DBEdit1: TDBEdit
+          Left = 124
+          Top = 34
+          Width = 1
+          Height = 1
+          TabOrder = 1
+        end
+      end
+      object tsConsulta: TTabSheet
+        Caption = 'Consulta'
+        object pnlPesquisa: TPanel
+          Left = 0
+          Top = 0
+          Width = 1012
+          Height = 65
+          Align = alTop
+          BevelOuter = bvNone
+          Color = 15718307
+          ParentBackground = False
+          TabOrder = 0
+          object edtPesquisa: TEdit
+            Left = 5
+            Top = 16
+            Width = 868
+            Height = 29
+            BevelInner = bvNone
+            CharCase = ecUpperCase
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+            TextHint = 'Digite aqui sua pesquisa!'
+          end
+          object btnPesquisa: TButton
+            Left = 879
+            Top = 16
+            Width = 121
+            Height = 29
+            Caption = 'Pesquisa'
+            TabOrder = 1
+          end
+        end
+      end
+    end
+  end
+  object panelRodape: TPanel
+    Left = 0
+    Top = 500
+    Width = 1024
+    Height = 50
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = 10975773
+    ParentBackground = False
+    TabOrder = 2
+    object pnlBotoesButton: TPanel
+      Left = 0
+      Top = 0
+      Width = 1024
+      Height = 50
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = 10975773
+      ParentBackground = False
+      TabOrder = 0
+      OnMouseDown = pnlBotoesButtonMouseDown
+      object btnNovo: TSpeedButton
+        AlignWithMargins = True
+        Left = 586
+        Top = 3
+        Width = 77
+        Height = 44
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ NOVO ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitTop = 2
+      end
+      object btnEditar: TSpeedButton
+        AlignWithMargins = True
+        Left = 669
+        Top = 3
+        Width = 77
+        Height = 44
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ EDITAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 720
+        ExplicitTop = 12
+        ExplicitHeight = 32
+      end
+      object btnCancelar: TSpeedButton
+        AlignWithMargins = True
+        Left = 752
+        Top = 3
+        Width = 103
+        Height = 44
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ CANCELAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpFixed
+        Font.Style = [fsBold]
+        Font.Quality = fqProof
+        ParentFont = False
+        ExplicitLeft = 632
+        ExplicitTop = 4
+        ExplicitHeight = 32
+      end
+      object btnSalvar: TSpeedButton
+        AlignWithMargins = True
+        Left = 861
+        Top = 3
+        Width = 77
+        Height = 44
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ SALVAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitTop = 6
+      end
+      object btnExcluir: TSpeedButton
+        AlignWithMargins = True
+        Left = 944
+        Top = 3
+        Width = 77
+        Height = 44
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ EXCLUIR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 827
+        ExplicitTop = 1
+        ExplicitHeight = 33
+      end
+    end
+  end
+end

@@ -1,0 +1,49 @@
+object DataModuleTabelas: TDataModuleTabelas
+  OldCreateOrder = False
+  Height = 373
+  Width = 415
+  object sdsClientes: TSimpleDataSet
+    Aggregates = <>
+    DataSet.CommandText = 'select * from clientes'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 32
+    Top = 40
+    object sdsClientesPESSOA_ID: TIntegerField
+      FieldName = 'PESSOA_ID'
+      Required = True
+    end
+    object sdsClientesPESSOA_RAZAO: TStringField
+      FieldName = 'PESSOA_RAZAO'
+      Size = 100
+    end
+    object sdsClientesPESSOA_TELEFONE: TStringField
+      FieldName = 'PESSOA_TELEFONE'
+      Size = 16
+    end
+    object sdsClientesPESSOA_CPF_CNPJ: TStringField
+      FieldName = 'PESSOA_CPF_CNPJ'
+      Size = 18
+    end
+    object sdsClientesPESSOA_IE_RG: TStringField
+      FieldName = 'PESSOA_IE_RG'
+    end
+    object sdsClientesPESSOA_OBSERVACAO: TStringField
+      FieldName = 'PESSOA_OBSERVACAO'
+      Size = 200
+    end
+    object sdsClientesPESSOA_ENDERECO: TStringField
+      FieldName = 'PESSOA_ENDERECO'
+      Size = 200
+    end
+    object sdsClientesPESSOA_CIDADE: TStringField
+      FieldName = 'PESSOA_CIDADE'
+      Size = 60
+    end
+    object sdsClientesPESSOA_ESTADO: TStringField
+      FieldName = 'PESSOA_ESTADO'
+      Size = 2
+    end
+  end
+end

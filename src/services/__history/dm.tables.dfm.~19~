@@ -1,0 +1,13 @@
+object DmTabelas: TDmTabelas
+  OldCreateOrder = False
+  Height = 386
+  Width = 452
+  object SimpleDataSet1: TSimpleDataSet
+    Aggregates = <>
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 72
+    Top = 72
+  end
+end

@@ -1,0 +1,32 @@
+unit DmPrincipal;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Data.DB,
+  Data.SqlExpr,
+  Data.DBXFirebird,
+  System.IniFiles, Datasnap.DBClient, SimpleDS; // essa merda aqui foi necessaria pra conseguir usar IniFile
+
+type
+  TDMConexao = class(TDataModule)
+    SQLConexao: TSQLConnection;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMConexao: TDMConexao;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,123 @@
+unit view.mensagens;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  view.base,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.Imaging.pngimage;
+
+type
+  TMyButtons = (mbSim, mbNao, mbOk);
+
+type
+  TviewMensagens = class(TviewBase)
+    pnlMensagens: TPanel;
+    pnlConteudo: TPanel;
+    pnlTitulo: TPanel;
+    pnlBotoes: TPanel;
+    mmoTexto: TMemo;
+    lblTitulo: TLabel;
+    btnOK: TSpeedButton;
+    btnSIM: TSpeedButton;
+    btnNAO: TSpeedButton;
+    imgAlerta: TImage;
+    imgInformation: TImage;
+    imgError: TImage;
+  private
+    { Private declarations }
+  public
+    class function Mensagem(Texto: String; Titulo: string; Tipo: Char;
+      Botoes: array of TMyButtons): Boolean;
+  end;
+
+var
+  viewMensagens: TviewMensagens;
+
+implementation
+
+{$R *.dfm}
+{ TviewMensagens }
+
+class function TviewMensagens.Mensagem(Texto: string; Titulo: string; Tipo: Char;
+  Botoes: array of TMyButtons): Boolean;
+
+var
+  i: Integer;
+  view: TviewMensagens;
+
+begin
+  view := TviewMensagens.Create(nil);
+  try
+
+    view.lblTitulo.Caption := Titulo;
+    view.mmoTexto.Text := Texto;
+
+    for i := 0 to Length(Botoes) - 1 do          //Tratamento de botões
+    begin
+      case (Botoes[i]) of
+        mbOk:
+          begin
+            view.btnOK.Visible := True;
+            view.btnOK.Align := alRight;
+          end;
+
+          mbSim:
+          begin
+            view.btnSIM.Visible := True;
+            view.btnSIM.Align := alRight;
+          end;
+
+        mbNao:
+          begin
+            view.btnNAO.Visible := True;
+            view.btnNAO.Align := alRight;
+          end;
+
+      else
+        begin
+          view.btnOK.Visible := True;
+          view.btnOK.Align := alRight;
+        end;
+      end;
+    end;
+  case (Tipo) of
+      ‘I‘: view.imgInformation.Visible := True;
+      ‘D‘: view.imgDeletar.Visible := True;
+      ‘Q‘: frm.imgQuestao.Visible := True;
+      ‘C‘: frm.imgCuidado.Visible := True;
+      ‘E‘: view.imgError.Visible := True;
+      else
+        frm.imgInformacao.Visible := True;
+    end;
+
+     view.ShowModal;
+
+    case (view.ModalResult) of
+      mrOk, mrYes : result := True;
+      else
+        result := False;
+    end;
+
+    //tipo das imagens
+
+finally
+  if view <> nil then
+    FreeAndNil(view);
+
+end;
+
+end;
+
+end.
+
