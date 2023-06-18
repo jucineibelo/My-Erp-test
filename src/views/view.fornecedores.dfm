@@ -6,13 +6,20 @@ inherited viewFornecedores: TviewFornecedores
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
+      Width = 903
+      Height = 29
       Caption = 'Fornecedores'
       ExplicitWidth = 115
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
+      ActivePage = tbsCadastro
       inherited tbsCadastro: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
         object lblUF: TLabel [0]
           Left = 912
           Top = 261
@@ -203,7 +210,7 @@ inherited viewFornecedores: TviewFornecedores
           end
         end
         inherited DBEdit1: TDBEdit
-          TabOrder = 13
+          TabOrder = 12
         end
         object edtEndereco: TDBEdit
           Left = 40
@@ -277,20 +284,6 @@ inherited viewFornecedores: TviewFornecedores
           DataSource = DmConexao.dsFornecedores
           TabOrder = 4
         end
-        object rgTipoPessoa: TRadioGroup
-          Left = 40
-          Top = 66
-          Width = 218
-          Height = 36
-          Caption = '  Tipo'
-          Columns = 2
-          ItemIndex = 0
-          Items.Strings = (
-            'Pessoa Fisica'
-            'Pessoa Juridica')
-          TabOrder = 12
-          OnClick = rgTipoPessoaClick
-        end
         object edtCnpj: TDBEdit
           Left = 565
           Top = 152
@@ -319,8 +312,30 @@ inherited viewFornecedores: TviewFornecedores
           TabOrder = 6
           OnChange = edtDataChange
         end
+        object dbRgTipoPessoa: TDBRadioGroup
+          Left = 39
+          Top = 66
+          Width = 210
+          Height = 36
+          Caption = 'Tipo Pessoa'
+          Columns = 2
+          DataField = 'FORNECEDOR_TIPO'
+          DataSource = DmConexao.dsFornecedores
+          Items.Strings = (
+            'Pessoa F'#237'sica'
+            'Pessoa Jur'#237'dica')
+          TabOrder = 13
+          Values.Strings = (
+            'F'
+            'J')
+          OnChange = dbRgTipoPessoaChange
+        end
       end
       inherited tsConsulta: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
         inherited pnlPesquisa: TPanel
           inherited btnPesquisa: TButton
             OnClick = btnPesquisaClick

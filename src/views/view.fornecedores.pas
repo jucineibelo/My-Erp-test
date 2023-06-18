@@ -45,7 +45,6 @@ type
     edtRG: TDBEdit;
     lblRG: TLabel;
     lblEndereco: TLabel;
-    rgTipoPessoa: TRadioGroup;
     lblCNPJ: TLabel;
     lblIE: TLabel;
     edtCnpj: TDBEdit;
@@ -55,7 +54,7 @@ type
     dbTxtID: TDBText;
     lblCodi: TLabel;
     DBGrid1: TDBGrid;
-    procedure rgTipoPessoaClick(Sender: TObject);
+    dbRgTipoPessoa: TDBRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -66,6 +65,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure edtDataChange(Sender: TObject);
+    procedure dbRgTipoPessoaChange(Sender: TObject);
   private
 
   procedure habilitaDesabilitaTipoPessoa(status : Boolean);
@@ -157,6 +157,15 @@ begin
   PageControl1.TabIndex := 1;
 end;
 
+procedure TviewFornecedores.dbRgTipoPessoaChange(Sender: TObject);
+begin
+  inherited;
+  if dbRgTipoPessoa.ItemIndex = 0 then
+    habilitaDesabilitaTipoPessoa(True)
+  else
+    habilitaDesabilitaTipoPessoa(False);
+end;
+
 procedure TviewFornecedores.edtDataChange(Sender: TObject);
 begin
   inherited;
@@ -195,22 +204,6 @@ begin
   lblIE.Visible := not status;
   edtCNPJ.Visible := not status;
   edtIE.Visible := not status;
-end;
-
-procedure TviewFornecedores.rgTipoPessoaClick(Sender: TObject);
-begin
-  inherited;
-  if rgTipoPessoa.ItemIndex = 0 then
-  begin
-    DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString := 'F';
-    habilitaDesabilitaTipoPessoa(True);
-  end
-  else if rgTipoPessoa.ItemIndex = 1 then
-  begin
-    DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString := 'J';
-    habilitaDesabilitaTipoPessoa(False);
-  end;
-
 end;
 
 end.

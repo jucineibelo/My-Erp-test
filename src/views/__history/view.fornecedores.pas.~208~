@@ -45,7 +45,6 @@ type
     edtRG: TDBEdit;
     lblRG: TLabel;
     lblEndereco: TLabel;
-    rgTipoPessoa: TRadioGroup;
     lblCNPJ: TLabel;
     lblIE: TLabel;
     edtCnpj: TDBEdit;
@@ -55,7 +54,7 @@ type
     dbTxtID: TDBText;
     lblCodi: TLabel;
     DBGrid1: TDBGrid;
-    procedure rgTipoPessoaClick(Sender: TObject);
+    dbRgTipoPessoa: TDBRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -67,9 +66,11 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure edtDataChange(Sender: TObject);
   private
-    { Private declarations }
+
+  procedure habilitaDesabilitaTipoPessoa(status : Boolean);
+
   public
-    procedure inativarOpcCnpj;
+
   end;
 
 var
@@ -180,44 +181,19 @@ end;
 procedure TviewFornecedores.FormShow(Sender: TObject);
 begin
   inherited;
-  inativarOpcCnpj;
+  habilitaDesabilitaTipoPessoa(False);
 end;
 
-procedure TviewFornecedores.inativarOpcCnpj;
+procedure TviewFornecedores.habilitaDesabilitaTipoPessoa(status: Boolean);
 begin
-  lblCNPJ.Visible := False;
-  lblIE.Visible := False;
-  edtCnpj.Visible := False;
-  edtIE.Visible := False;
-end;
-
-procedure TviewFornecedores.rgTipoPessoaClick(Sender: TObject);
-begin
-  inherited;
-  if rgTipoPessoa.ItemIndex = 0 then
-  begin
-    DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString := 'F';
-    inativarOpcCnpj;
-    lblCPF.Visible := true;
-    lblRG.Visible := true;
-    edtCPF.Visible := true;
-    edtRG.Visible := true;
-
-  end
-  else if rgTipoPessoa.ItemIndex = 1 then
-  begin
-    DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString := 'J';
-    lblCPF.Visible := False;
-    lblRG.Visible := False;
-    edtCPF.Visible := False;
-    edtRG.Visible := False;
-    lblCNPJ.Visible := true;
-    lblIE.Visible := true;
-    edtCnpj.Visible := true;
-    edtIE.Visible := true;
-
-  end;
-
+  lblCPF.Visible := status;
+  lblRG.Visible := status;
+  edtCPF.Visible := status;
+  edtRG.Visible := status;
+  lblCNPJ.Visible := not status;
+  lblIE.Visible := not status;
+  edtCNPJ.Visible := not status;
+  edtIE.Visible := not status;
 end;
 
 end.

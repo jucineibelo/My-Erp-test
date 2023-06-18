@@ -14,6 +14,7 @@ inherited viewFornecedores: TviewFornecedores
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
+      ActivePage = tbsCadastro
       inherited tbsCadastro: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24
@@ -295,7 +296,6 @@ inherited viewFornecedores: TviewFornecedores
             'Pessoa Fisica'
             'Pessoa Juridica')
           TabOrder = 12
-          OnClick = rgTipoPessoaClick
         end
         object edtCnpj: TDBEdit
           Left = 565
@@ -323,6 +323,7 @@ inherited viewFornecedores: TviewFornecedores
           DataField = 'DATA_CADASTRO'
           DataSource = DmConexao.dsFornecedores
           TabOrder = 6
+          OnChange = edtDataChange
         end
       end
       inherited tsConsulta: TTabSheet
@@ -342,21 +343,56 @@ inherited viewFornecedores: TviewFornecedores
           Height = 370
           Align = alClient
           DataSource = DmConexao.dsFornecedores
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'FORNECEDOR_ID'
+              Title.Alignment = taCenter
+              Title.Caption = 'C'#243'digo'
+              Width = 50
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'FORNECEDOR_RAZAO'
+              Title.Alignment = taCenter
+              Title.Caption = 'Nome'
+              Width = 300
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'DATA_CADASTRO'
+              Title.Alignment = taCenter
+              Title.Caption = 'Data Cadastro'
+              Width = 100
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'TIPO_PESSOA'
+              Title.Alignment = taCenter
+              Title.Caption = 'CNPJ/CPF'
+              Width = 200
+              Visible = True
+            end>
         end
       end
     end
   end
   inherited panelRodape: TPanel
     inherited pnlBotoesButton: TPanel
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
-      end
       inherited btnExcluir: TSpeedButton
         OnClick = btnExcluirClick
       end

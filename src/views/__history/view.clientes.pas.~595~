@@ -44,7 +44,6 @@ type
     edtUf: TDBEdit;
     edtRazao: TDBEdit;
     DBGrid1: TDBGrid;
-    rgTipoPessoa: TRadioGroup;
     lblCNPJ: TLabel;
     lblIE: TLabel;
     edtCNPJ: TDBEdit;
@@ -52,6 +51,7 @@ type
     lblData: TLabel;
     edtData: TDBEdit;
     dbTxtID: TDBText;
+    dbRgTipoPessoa: TDBRadioGroup;
     procedure btnEditarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -63,10 +63,11 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure tsConsultaShow(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure rgTipoPessoaClick(Sender: TObject);
+    procedure dbRgTipoPessoaChange(Sender: TObject);
 
   private
     procedure habilitaDesabilitaTipoPessoa(status : Boolean);
+    procedure habilitarTipoPessoa;
 
   public
 
@@ -97,7 +98,7 @@ begin
   if DmConexao.sdsClientes.State = dsBrowse then
     DmConexao.sdsClientes.Edit;
   edtRazao.SetFocus;
-  habilitaDesabilitaTipoPessoa(rgTipoPessoa.Enabled);
+
 end;
 
 procedure TviewClientes.btnExcluirClick(Sender: TObject);
@@ -120,15 +121,14 @@ var
 begin
   inherited;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsClientes.Last;
-  proxregistro := DmConexao.sdsClientesCLIENTE_ID.AsInteger + 1;
-  DmConexao.sdsClientes.Append;
-  DmConexao.sdsClientesCLIENTE_ID.AsInteger := proxregistro;
+  DmConexao.sdsClientes.Last;   //ultimo registro
+  proxregistro := DmConexao.sdsClientesCLIENTE_ID.AsInteger + 1; //receber na  variável o ID atual +1
+  DmConexao.sdsClientes.Append; // prox registro em branco
+  DmConexao.sdsClientesCLIENTE_ID.AsInteger := proxregistro; //receber a variável com o id novo no novo registro
   //receber a data atual
   DmConexao.sdsClientesDATA_CADASTRO.AsDateTime := Now;
-  rgTipoPessoa.ItemIndex := -1; //para nunca trazer valor setado e  sim escolher o tipo de pessoa
+  habilitarTipoPessoa;
   edtRazao.SetFocus;
-
 end;
 
 procedure TviewClientes.btnPesquisaClick(Sender: TObject);
@@ -185,6 +185,15 @@ begin
   edtRazao.SetFocus;
 end;
 
+procedure TviewClientes.dbRgTipoPessoaChange(Sender: TObject);
+begin
+  inherited;
+  if dbRgTipoPessoa.ItemIndex = 0 then
+    habilitaDesabilitaTipoPessoa(True)
+  else
+    habilitaDesabilitaTipoPessoa(False);
+end;
+
 procedure TviewClientes.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -214,22 +223,6 @@ begin
     lblIE.Visible := not status;
     edtCNPJ.Visible := not status;
     edtIE.Visible := not status;
-end;
-
-procedure TviewClientes.rgTipoPessoaClick(Sender: TObject);
-begin
-  inherited;
-  if rgTipoPessoa.ItemIndex = 0 then
-  begin
-    DmConexao.sdsClientesCLIENTE_TIPO.AsString := 'F';
-    habilitaDesabilitaTipoPessoa(True);
-
-  end
-  else if rgTipoPessoa.ItemIndex = 1 then
-  begin
-    DmConexao.sdsClientesCLIENTE_TIPO.AsString := 'J';
-    habilitaDesabilitaTipoPessoa(False);
-  end;
 end;
 
 procedure TviewClientes.tsConsultaShow(Sender: TObject);

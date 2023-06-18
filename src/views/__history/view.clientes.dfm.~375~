@@ -6,6 +6,8 @@ inherited viewClientes: TviewClientes
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
+      Width = 903
+      Height = 29
       Caption = 'Clientes'
       ExplicitWidth = 68
     end
@@ -14,6 +16,10 @@ inherited viewClientes: TviewClientes
     inherited PageControl1: TPageControl
       ActivePage = tbsCadastro
       inherited tbsCadastro: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
         object lblID: TLabel [0]
           Left = 39
           Top = 144
@@ -273,21 +279,7 @@ inherited viewClientes: TviewClientes
           DataSource = DmConexao.dsClientes
           TabOrder = 1
         end
-        object rgTipoPessoa: TRadioGroup [22]
-          Left = 39
-          Top = 66
-          Width = 218
-          Height = 36
-          Caption = '  Tipo'
-          Columns = 2
-          ItemIndex = 0
-          Items.Strings = (
-            'Pessoa Fisica'
-            'Pessoa Juridica')
-          TabOrder = 12
-          OnClick = rgTipoPessoaClick
-        end
-        object edtCNPJ: TDBEdit [23]
+        object edtCNPJ: TDBEdit [22]
           Left = 539
           Top = 164
           Width = 180
@@ -296,7 +288,7 @@ inherited viewClientes: TviewClientes
           DataSource = DmConexao.dsClientes
           TabOrder = 3
         end
-        object edtIE: TDBEdit [24]
+        object edtIE: TDBEdit [23]
           Left = 786
           Top = 164
           Width = 180
@@ -306,7 +298,7 @@ inherited viewClientes: TviewClientes
           TabOrder = 5
         end
         inherited DBEdit1: TDBEdit
-          TabOrder = 13
+          TabOrder = 12
         end
         object edtData: TDBEdit
           Left = 39
@@ -317,9 +309,31 @@ inherited viewClientes: TviewClientes
           DataSource = DmConexao.dsClientes
           TabOrder = 6
         end
+        object dbRgTipoPessoa: TDBRadioGroup
+          Left = 39
+          Top = 66
+          Width = 210
+          Height = 36
+          Caption = 'Tipo Pessoa'
+          Columns = 2
+          DataField = 'CLIENTE_TIPO'
+          DataSource = DmConexao.dsClientes
+          Items.Strings = (
+            'Pessoa F'#237'sica'
+            'Pessoa Jur'#237'dica')
+          TabOrder = 13
+          Values.Strings = (
+            'F'
+            'J')
+          OnChange = dbRgTipoPessoaChange
+        end
       end
       inherited tsConsulta: TTabSheet
         OnShow = tsConsultaShow
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1012
+        ExplicitHeight = 435
         inherited pnlPesquisa: TPanel
           inherited btnPesquisa: TButton
             OnClick = btnPesquisaClick
@@ -360,9 +374,6 @@ inherited viewClientes: TviewClientes
   end
   inherited panelRodape: TPanel
     inherited pnlBotoesButton: TPanel
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
-      end
       inherited btnExcluir: TSpeedButton
         OnClick = btnExcluirClick
         ExplicitLeft = 944
