@@ -1,8 +1,8 @@
 object DmConexao: TDmConexao
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 494
-  Width = 378
+  Height = 417
+  Width = 353
   object SQLConexao: TSQLConnection
     ConnectionName = 'FBConnection'
     DriverName = 'Firebird'
@@ -34,8 +34,8 @@ object DmConexao: TDmConexao
       'TrimChar=False'
       'DriverName=Firebird'
       
-        'Database=C:\Users\Juci\Desktop\projeto\my-sys\Banco de Dados\DAT' +
-        'ABASE.FDB'
+        'Database=C:\Users\User-J\Desktop\Projetos Delphi\CURSO YOUTUBE\E' +
+        'RP Basico\Banco de Dados\DATABASE.FDB'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'
@@ -48,6 +48,7 @@ object DmConexao: TDmConexao
       'WaitOnLocks=True'
       'IsolationLevel=ReadCommitted'
       'Trim Char=False')
+    Connected = True
     Left = 32
     Top = 16
   end

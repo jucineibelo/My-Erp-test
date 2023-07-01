@@ -1,0 +1,43 @@
+unit view.vendas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls, Vcl.Mask,
+  Vcl.DBCtrls, Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls;
+
+type
+  TviewVendas = class(TviewBaseListas)
+    btnPesq: TSpeedButton;
+    lblVendedor: TLabel;
+    edtVerVendedor: TEdit;
+    edtVendedor: TEdit;
+    procedure btnPesqClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewVendas: TviewVendas;
+
+implementation
+
+uses
+  dm.conexao;
+
+{$R *.dfm}
+
+procedure TviewVendas.btnPesqClick(Sender: TObject);
+var
+  pesquisa : Integer;
+begin
+  inherited;
+  pesquisa := StrToInt(edtVendedor.Text);
+  DmConexao.sdsFuncionariosCODIGO.AsInteger;
+
+end;
+
+end.

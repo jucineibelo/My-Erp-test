@@ -13,7 +13,9 @@ uses
   view.estoque in 'src\views\view.estoque.pas' {viewEstoque},
   view.funcionarios in 'src\views\view.funcionarios.pas' {viewFuncionarios},
   view.empresa in 'src\views\view.empresa.pas' {viewEmpresa},
-  view.login in 'src\views\view.login.pas' {frmLogin};
+  view.login in 'src\views\view.login.pas' {frmLogin},
+  view.vendas in 'src\views\view.vendas.pas' {viewVendas},
+  botoes in 'botoes.pas';
 
 {$R *.res}
 

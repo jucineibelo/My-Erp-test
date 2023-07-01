@@ -77,55 +77,68 @@ var
 
 implementation
 
+uses
+  dm.conexao, botoes;
+
 {$R *.dfm}
 
-uses dm.conexao;
 
 procedure TviewClientes.btnCancelarClick(Sender: TObject);
+var
+  botoes: TBotoes;
 begin
   inherited;
-  if DmConexao.sdsClientes.State in dsEditModes then
-    DmConexao.sdsClientes.Cancel;
+  botoes := TBotoes.Create;
+  try
+    botoes.botaoCancelar(DmConexao.sdsClientes);
+  finally
+    botoes.Free;
+  end;
   PageControl1.TabIndex := 1;
-
 end;
 
+
 procedure TviewClientes.btnEditarClick(Sender: TObject);
+var
+botoes : TBotoes;
 begin
+  botoes := TBotoes.Create;
   inherited;
   PageControl1.TabIndex := 0;
-  if DmConexao.sdsClientes.State = dsBrowse then
-    DmConexao.sdsClientes.Edit;
   edtRazao.SetFocus;
-
+  try
+    botoes.botaoEditar(DmConexao.sdsClientes);
+  finally
+    botoes.Free;
+  end;
 end;
 
 procedure TviewClientes.btnExcluirClick(Sender: TObject);
 var
-  aviso: Integer;
+botoes : TBotoes;
 begin
   inherited;
-  Application.Title := 'Atenção!';
-  aviso := Application.MessageBox('Deseja mesmo excluir o registro? ',
-    'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
-  if aviso <> IDNO then
-    DmConexao.sdsClientes.Delete;
-  DmConexao.sdsClientes.ApplyUpdates(0);
-
+  botoes := TBotoes.Create;
+  try
+    botoes.botaoExcluir(DmConexao.sdsClientes);
+  finally
+    botoes.Free;
+  end;
 end;
 
 procedure TviewClientes.btnNovoClick(Sender: TObject);
 var
-  proxregistro: Integer;
+crudeBotao : TBotoes;
 begin
   inherited;
+  crudeBotao := TBotoes.Create;
+  try
+    crudeBotao.botaoNovo(DmConexao.sdsClientes, 'CLIENTE_ID');
+  finally
+    crudeBotao.Free;
+  end;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsClientes.Last;   //ultimo registro
-  proxregistro := DmConexao.sdsClientesCLIENTE_ID.AsInteger + 1; //receber na  variável o ID atual +1
-  DmConexao.sdsClientes.Append; // prox registro em branco
-  DmConexao.sdsClientesCLIENTE_ID.AsInteger := proxregistro; //receber a variável com o id novo no novo registro
-  //receber a data atual
-  DmConexao.sdsClientesDATA_CADASTRO.AsDateTime := Now;
+  DmConexao.sdsClientesDATA_CADASTRO.AsDateTime := Now;  //receber a data atual
   edtRazao.SetFocus;
 end;
 
@@ -166,13 +179,16 @@ begin
 end;
 
 procedure TviewClientes.btnSalvarClick(Sender: TObject);
+var
+botoes : TBotoes;
 begin
   inherited;
-  DmConexao.sdsClientes.Post;
-  DmConexao.sdsClientes.ApplyUpdates(0);
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-  PageControl1.TabIndex := 1;
-
+  botoes := TBotoes.Create;
+  try
+    botoes.botaoSalvar(DmConexao.sdsClientes);
+  finally
+    botoes.Free;
+  end;
 end;
 
 procedure TviewClientes.dbGridDblClick(Sender: TObject);

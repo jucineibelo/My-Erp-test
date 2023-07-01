@@ -5,8 +5,6 @@
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
-      Width = 903
-      Height = 29
       Caption = 'Produtos'
       ExplicitWidth = 77
     end
@@ -19,12 +17,7 @@
       Height = 22
     end
     inherited PageControl1: TPageControl
-      ActivePage = tsConsulta
       inherited tbsCadastro: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         object lblDescricao: TLabel [0]
           Left = 150
           Top = 192
@@ -217,10 +210,6 @@
         end
       end
       inherited tsConsulta: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         inherited pnlPesquisa: TPanel
           inherited btnPesquisa: TButton
             OnClick = btnPesquisaClick
@@ -293,9 +282,6 @@
   end
   inherited panelRodape: TPanel
     inherited pnlBotoesButton: TPanel
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
-      end
       inherited btnExcluir: TSpeedButton
         OnClick = btnExcluirClick
       end

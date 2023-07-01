@@ -102,7 +102,7 @@ var
 implementation
 
 uses
-  view.clientes, dm.conexao;
+  view.clientes, dm.conexao, view.vendas;
 
 {$R *.dfm}
 
@@ -167,7 +167,13 @@ end;
 
 procedure TfrmPrincipal.btnVendasClick(Sender: TObject);
 begin // Vendas
-
+  GetLineMenu(Sender);
+  viewVendas := TviewVendas.Create(Self);
+  try
+    viewVendas.ShowModal
+  finally
+    FreeAndNil(viewVendas);
+  end;
 end;
 
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
