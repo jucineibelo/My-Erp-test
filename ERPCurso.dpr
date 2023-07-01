@@ -15,7 +15,7 @@ uses
   view.empresa in 'src\views\view.empresa.pas' {viewEmpresa},
   view.login in 'src\views\view.login.pas' {frmLogin},
   view.vendas in 'src\views\view.vendas.pas' {viewVendas},
-  botoes in 'botoes.pas';
+  botoes in 'src\controllers\botoes.pas';
 
 {$R *.res}
 

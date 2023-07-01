@@ -9,7 +9,7 @@ inherited viewClientes: TviewClientes
       Width = 903
       Height = 29
       Caption = 'Clientes'
-      ExplicitWidth = 903
+      ExplicitWidth = 68
     end
   end
   inherited pnlLinhaFundo: TPanel

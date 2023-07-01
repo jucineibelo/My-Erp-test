@@ -12,14 +12,18 @@ uses
   view.produtos in 'src\views\view.produtos.pas' {viewProdutos},
   view.estoque in 'src\views\view.estoque.pas' {viewEstoque},
   view.funcionarios in 'src\views\view.funcionarios.pas' {viewFuncionarios},
-  view.empresa in 'src\views\view.empresa.pas' {viewEmpresa};
+  view.empresa in 'src\views\view.empresa.pas' {viewEmpresa},
+  view.login in 'src\views\view.login.pas' {frmLogin},
+  view.vendas in 'src\views\view.vendas.pas' {viewVendas},
+  botoes in 'src\controllers\botoes.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDmConexao, DmConexao);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;
 end.
