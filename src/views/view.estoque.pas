@@ -74,7 +74,7 @@ begin
   DmConexao.sdsEstoqueDATA.AsDateTime := Now;
   lookupProd.SetFocus;
 
-  // ativar os botões
+//  // ativar os botões
   btnCancelar.Visible := True;
   btnSalvar.Visible := True;
   btnNovo.Visible := False;

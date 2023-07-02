@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls, Vcl.Mask,
   Vcl.DBCtrls, Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  dm.conexao, DB, Vcl.Grids, Vcl.DBGrids;
+  dm.conexao, DB, Vcl.Grids, Vcl.DBGrids, botoes;
 
 type
   TviewFuncionarios = class(TviewBaseListas)
@@ -34,7 +34,7 @@ type
     procedure tbsCadastroShow(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
   private
-    { Private declarations }
+    var lCrudBotoes : TBotoes;
   public
     { Public declarations }
   end;
@@ -49,27 +49,19 @@ implementation
 procedure TviewFuncionarios.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  if DmConexao.sdsFuncionarios.State in dsEditModes then
-    DmConexao.sdsFuncionarios.Cancel;
+  lCrudBotoes.botaoCancelar(DmConexao.sdsFuncionarios);
   PageControl1.TabIndex := 1;
   btnNovo.Visible := True;
 end;
 
 procedure TviewFuncionarios.btnNovoClick(Sender: TObject);
-var
-  proxregistro: Integer;
 begin
   inherited;
-  if DmConexao.sdsFuncionarios.State in dsEditModes then
-    btnNovo.Visible := False;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsFuncionarios.Last;
-  proxregistro := DmConexao.sdsFuncionariosCODIGO.AsInteger + 1;
-  DmConexao.sdsFuncionarios.Append;
-  DmConexao.sdsFuncionariosCODIGO.AsInteger := proxregistro;
-  DmConexao.sdsFuncionariosDATA_CADASTRO.AsDateTime := Now;
   edtNome.SetFocus;
-end;
+  lCrudBotoes.botaoNovo(DmConexao.sdsFuncionarios, 'CODIGO');
+  DmConexao.sdsFuncionariosDATA_CADASTRO.AsDateTime := Now;
+ end;
 
 procedure TviewFuncionarios.btnPesquisaClick(Sender: TObject);
 begin
@@ -82,9 +74,7 @@ end;
 procedure TviewFuncionarios.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsFuncionarios.Post;
-  DmConexao.sdsFuncionarios.ApplyUpdates(0);
-  MessageDlg('Usuário salvo com sucesso!', mtInformation, [mbOK], 0);
+  lCrudBotoes.botaoSalvar(DmConexao.sdsFuncionarios, 'Usuário salvo com sucesso!');
   PageControl1.TabIndex := 1;
   btnNovo.Visible := True;
 end;

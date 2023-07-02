@@ -24,8 +24,8 @@ inherited viewBaseListas: TviewBaseListas
       AlignWithMargins = True
       Left = 38
       Top = 3
-      Width = 903
-      Height = 29
+      Width = 70
+      Height = 25
       Cursor = crHandPoint
       Align = alClient
       Caption = 'lblTitulo'
@@ -36,8 +36,6 @@ inherited viewBaseListas: TviewBaseListas
       Font.Style = [fsBold]
       ParentFont = False
       OnMouseDown = lblTituloMouseDown
-      ExplicitWidth = 70
-      ExplicitHeight = 25
     end
     object panelIcone: TPanel
       Left = 0
@@ -145,6 +143,10 @@ inherited viewBaseListas: TviewBaseListas
       object tbsCadastro: TTabSheet
         Caption = 'Cadastro'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 0
           Top = 0
@@ -183,6 +185,10 @@ inherited viewBaseListas: TviewBaseListas
       end
       object tsConsulta: TTabSheet
         Caption = 'Consulta'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object pnlPesquisa: TPanel
           Left = 0
           Top = 0

@@ -7,12 +7,11 @@ inherited viewFuncionarios: TviewFuncionarios
       Width = 903
       Height = 29
       Caption = 'Funcion'#225'rios'
-      ExplicitWidth = 109
+      ExplicitWidth = 903
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
-      ActivePage = tsConsulta
       inherited tbsCadastro: TTabSheet
         OnShow = tbsCadastroShow
         ExplicitLeft = 4
@@ -214,9 +213,6 @@ inherited viewFuncionarios: TviewFuncionarios
       inherited btnEditar: TSpeedButton
         Enabled = False
         Visible = False
-      end
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
       end
       inherited btnExcluir: TSpeedButton
         Enabled = False

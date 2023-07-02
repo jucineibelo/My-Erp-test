@@ -20,7 +20,9 @@ uses
   Vcl.Grids,
   Vcl.DBGrids,
   Data.DB,
-  Vcl.Imaging.pngimage, Vcl.Mask, Vcl.DBCtrls;
+  Vcl.Imaging.pngimage,
+  Vcl.Mask,
+  Vcl.DBCtrls;
 
 type
   TviewBaseListas = class(TviewBase)
@@ -62,8 +64,7 @@ type
     { Private declarations }
   public
 
-    procedure somenteLeitura;
-    procedure desativarSomenteLeitura;
+    procedure somenteLeitura(Value : Boolean);
     procedure ativaDesativaBotoes(status : boolean );
 
   end;
@@ -88,23 +89,22 @@ end;
 procedure TviewBaseListas.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  somenteLeitura;
+  somenteLeitura(True);
   ativaDesativaBotoes(True);
 end;
 
 procedure TviewBaseListas.btnEditarClick(Sender: TObject);
 begin
   inherited;
-  desativarSomenteLeitura;
+  somenteLeitura(False);
   ativaDesativaBotoes(False);
 end;
 
 procedure TviewBaseListas.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  desativarSomenteLeitura;
+  somenteLeitura(False);
   ativaDesativaBotoes(False);
-
 end;
 
 procedure TviewBaseListas.btnSairClick(Sender: TObject);
@@ -119,29 +119,11 @@ begin
   ativaDesativaBotoes(True);
 end;
 
-procedure TviewBaseListas.desativarSomenteLeitura;
-var
-  i: Integer;
-begin
-  for i := 0 to ComponentCount - 1 do
-  begin
-    if Components[i] is TDBEdit then
-      TDBEdit(Components[i]).ReadOnly := False;
-  end;
-
-  for i := 0 to ComponentCount - 1 do
-  begin
-    if Components[i] is TRadioGroup then
-      TRadioGroup(Components[i]).Enabled := True;
-  end;
-
-end;
-
 procedure TviewBaseListas.FormCreate(Sender: TObject);
 begin
   inherited;
   PageControl1.TabIndex := 1;
-  somenteLeitura;
+  somenteLeitura(True);
   ativaDesativaBotoes(True);
 end;
 
@@ -163,7 +145,7 @@ begin
   Perform(WM_SYSCOMMAND, sc_DragMove, 0);
 end;
 
-procedure TviewBaseListas.somenteLeitura;
+procedure TviewBaseListas.somenteLeitura(Value: Boolean);
 // colocar todos os componentes tdedit em modo de leitura
 var
   i: Integer;
@@ -171,14 +153,14 @@ begin
   for i := 0 to ComponentCount - 1 do
   begin
     if Components[i] is TDBEdit then
-      TDBEdit(Components[i]).ReadOnly := True;
+      TDBEdit(Components[i]).ReadOnly := Value;
   end;
 
   // Desativar radiogroups quando está em modo de leitura
   for i := 0 to ComponentCount - 1 do
   begin
     if Components[i] is TRadioGroup then
-      TRadioGroup(Components[i]).Enabled := False;
+      TRadioGroup(Components[i]).Enabled := not Value;
 
   end;
 end;
