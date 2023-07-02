@@ -25,7 +25,7 @@ uses
   Data.DBXFirebird,
   Datasnap.DBClient,
   SimpleDS,
-  DB;
+  DB, botoes;
 
 type
   TviewFornecedores = class(TviewBaseListas)
@@ -67,8 +67,8 @@ type
     procedure edtDataChange(Sender: TObject);
     procedure dbRgTipoPessoaChange(Sender: TObject);
   private
-
-  procedure habilitaDesabilitaTipoPessoa(status : Boolean);
+    var CrudBotoes: TBotoes;
+    procedure habilitaDesabilitaTipoPessoa(status : Boolean);
 
   public
 
@@ -86,8 +86,11 @@ uses dm.conexao;
 procedure TviewFornecedores.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  if DmConexao.sdsFornecedores.State in dsEditModes then
-    DmConexao.sdsFornecedores.Cancel;
+  try
+    CrudBotoes.botaoCancelar(DmConexao.sdsFornecedores);
+  finally
+    CrudBotoes.Free;
+  end;
   PageControl1.TabIndex := 1;
 
 end;
@@ -96,35 +99,34 @@ procedure TviewFornecedores.btnEditarClick(Sender: TObject);
 begin
   inherited;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsFornecedores.Edit;
   edtRazao.SetFocus;
+  try
+    CrudBotoes.botaoEditar(DmConexao.sdsFornecedores);
+  finally
+    CrudBotoes.Free;
+  end;
 end;
 
 procedure TviewFornecedores.btnExcluirClick(Sender: TObject);
-var
-  aviso: Integer;
 begin
   inherited;
-  Application.Title := 'Atenção!';
-  aviso := Application.MessageBox('Deseja mesmo excluir o registro? ',
-    'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
-  if aviso <> IDNO then
-    DmConexao.sdsFornecedores.Delete;
-  DmConexao.sdsFornecedores.ApplyUpdates(0);
+  try
+    CrudBotoes.botaoExcluir(DmConexao.sdsFornecedores);
+  finally
+    CrudBotoes.Free;
+  end;
 end;
 
 procedure TviewFornecedores.btnNovoClick(Sender: TObject);
-var
-  proxregistro: Integer;
 begin
   inherited;
+  try
+    CrudBotoes.botaoNovo(DmConexao.sdsFornecedores, 'FORNECEDOR_ID');
+  finally
+    CrudBotoes.Free;
+  end;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsFornecedores.Last;
-  proxregistro := DmConexao.sdsFornecedoresFORNECEDOR_ID.AsInteger + 1;
-  DmConexao.sdsFornecedores.Append;
-  DmConexao.sdsFornecedoresFORNECEDOR_ID.AsInteger := proxregistro;
-  //receber data atual
-  DmConexao.sdsFornecedoresDATA_CADASTRO.AsDateTime := Now;
+  DmConexao.sdsFornecedoresDATA_CADASTRO.AsDateTime := Now;  //receber data atual
   edtRazao.SetFocus;
 end;
 
@@ -151,9 +153,11 @@ end;
 procedure TviewFornecedores.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsFornecedores.Post;
-  DmConexao.sdsFornecedores.ApplyUpdates(0);
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
+  try
+    CrudBotoes.botaoSalvar(DmConexao.sdsFornecedores, 'Fornecedor salvo com sucesso!');
+  finally
+    CrudBotoes.Free;
+  end;
   PageControl1.TabIndex := 1;
 end;
 

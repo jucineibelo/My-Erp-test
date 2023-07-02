@@ -22,7 +22,7 @@ uses
   Vcl.Imaging.pngimage,
   Vcl.ExtCtrls,
   Vcl.Mask,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, botoes;
 
 type
   TviewClientes = class(TviewBaseListas)
@@ -67,6 +67,7 @@ type
 
   private
     procedure habilitaDesabilitaTipoPessoa(status : Boolean);
+    var lCrudBotoes : TBotoes;
 
   public
 
@@ -78,64 +79,52 @@ var
 implementation
 
 uses
-  dm.conexao, botoes;
+  dm.conexao;
 
 {$R *.dfm}
 
 
 procedure TviewClientes.btnCancelarClick(Sender: TObject);
-var
-  botoes: TBotoes;
 begin
   inherited;
-  botoes := TBotoes.Create;
   try
-    botoes.botaoCancelar(DmConexao.sdsClientes);
+    lCrudBotoes.botaoCancelar(DmConexao.sdsClientes);
   finally
-    botoes.Free;
+    lCrudBotoes.Free;
   end;
   PageControl1.TabIndex := 1;
 end;
 
 
 procedure TviewClientes.btnEditarClick(Sender: TObject);
-var
-botoes : TBotoes;
 begin
-  botoes := TBotoes.Create;
   inherited;
   PageControl1.TabIndex := 0;
   edtRazao.SetFocus;
   try
-    botoes.botaoEditar(DmConexao.sdsClientes);
+    lCrudBotoes.botaoEditar(DmConexao.sdsClientes);
   finally
-    botoes.Free;
+    lCrudBotoes.Free;
   end;
 end;
 
 procedure TviewClientes.btnExcluirClick(Sender: TObject);
-var
-botoes : TBotoes;
 begin
   inherited;
-  botoes := TBotoes.Create;
   try
-    botoes.botaoExcluir(DmConexao.sdsClientes);
+    lCrudBotoes.botaoExcluir(DmConexao.sdsClientes);
   finally
-    botoes.Free;
+    lCrudBotoes.Free;
   end;
 end;
 
 procedure TviewClientes.btnNovoClick(Sender: TObject);
-var
-crudeBotao : TBotoes;
 begin
   inherited;
-  crudeBotao := TBotoes.Create;
   try
-    crudeBotao.botaoNovo(DmConexao.sdsClientes, 'CLIENTE_ID');
+    lCrudBotoes.botaoNovo(DmConexao.sdsClientes, 'CLIENTE_ID');
   finally
-    crudeBotao.Free;
+    lCrudBotoes.Free;
   end;
   PageControl1.TabIndex := 0;
   DmConexao.sdsClientesDATA_CADASTRO.AsDateTime := Now;  //receber a data atual
@@ -179,15 +168,12 @@ begin
 end;
 
 procedure TviewClientes.btnSalvarClick(Sender: TObject);
-var
-botoes : TBotoes;
 begin
   inherited;
-  botoes := TBotoes.Create;
   try
-    botoes.botaoSalvar(DmConexao.sdsClientes);
+    lCrudBotoes.botaoSalvar(DmConexao.sdsClientes, 'Cliente salvo com sucesso!');
   finally
-    botoes.Free;
+    lCrudBotoes.Free;
   end;
 end;
 

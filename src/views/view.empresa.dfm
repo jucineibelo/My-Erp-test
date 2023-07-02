@@ -193,9 +193,6 @@ inherited viewEmpresa: TviewEmpresa
         ExplicitTop = 3
         ExplicitWidth = 112
       end
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
-      end
       inherited btnExcluir: TSpeedButton
         Enabled = False
         Visible = False

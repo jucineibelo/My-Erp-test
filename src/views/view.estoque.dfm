@@ -173,9 +173,6 @@ inherited viewEstoque: TviewEstoque
         Transparent = False
         Visible = False
       end
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
-      end
       inherited btnExcluir: TSpeedButton
         Enabled = False
         Transparent = False

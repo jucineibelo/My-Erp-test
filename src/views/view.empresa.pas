@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls, Vcl.Mask,
   Vcl.DBCtrls, Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls, dm.conexao,
-  Vcl.Grids, Vcl.DBGrids, DB;
+  Vcl.Grids, Vcl.DBGrids, DB, botoes;
 
 type
   TviewEmpresa = class(TviewBaseListas)
@@ -32,7 +32,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
   private
-    { Private declarations }
+    var LCrudBotoes : TBotoes;
   public
     { Public declarations }
   end;
@@ -42,21 +42,28 @@ var
 
 implementation
 
+
 {$R *.dfm}
 
 procedure TviewEmpresa.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-    if DmConexao.sdsEmpresa.State in dsEditModes then
-    DmConexao.sdsEmpresa.Cancel;
+  try
+    LCrudBotoes.botaoCancelar(DmConexao.sdsEmpresa);
+  finally
+    LCrudBotoes.Free;
+  end;
 end;
 
 procedure TviewEmpresa.btnEditarClick(Sender: TObject);
 begin
   inherited;
-  if DmConexao.sdsEmpresa.State = dsBrowse then
-    DmConexao.sdsEmpresa.Edit;
-    edtRazao.SetFocus;
+  edtRazao.SetFocus;
+  try
+    LCrudBotoes.botaoEditar(DmConexao.sdsEmpresa);
+  finally
+    LCrudBotoes.Free;
+  end;
 end;
 
 procedure TviewEmpresa.btnNovoClick(Sender: TObject);
@@ -66,19 +73,13 @@ begin
   DmConexao.sdsEmpresa.Last;
 end;
 
-
 procedure TviewEmpresa.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsEmpresa.Post;
-  DmConexao.sdsEmpresa.ApplyUpdates(0);
-  DmConexao.sdsEmpresa.Refresh;
-  MessageDlg('Empresa cadastrada com sucesso!', mtInformation, [mbOK], 0);
+  LCrudBotoes.botaoSalvar(DmConexao.sdsEmpresa, 'Empresa salva com sucesso!');
 end;
 
 procedure TviewEmpresa.FormCreate(Sender: TObject);
-var
-desativarPageDois : Boolean;
 begin
   inherited;
   DmConexao.sdsEmpresa.Open;

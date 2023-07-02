@@ -3,7 +3,7 @@ unit botoes;
 interface
 
 uses
-  Data.DB, Vcl.Forms, Vcl.Dialogs, System.UITypes, Datasnap.DBClient;
+  Data.DB, Vcl.Forms, Vcl.Dialogs, System.UITypes, Datasnap.DBClient, SimpleDS;
 
 type
   TBotoes = class
@@ -12,8 +12,8 @@ type
     procedure botaoNovo(Dataset: TDataSet; IDField: String);
     procedure botaoEditar(Dataset: TDataSet);
     procedure botaoCancelar(Dataset: TDataSet);
-    procedure botaoExcluir(Dataset: TDataSet);
-    procedure botaoSalvar(Dataset: TDataSet);
+    procedure botaoExcluir(Dataset: TSimpleDataSet);
+    procedure botaoSalvar(Dataset: TSimpleDataSet; MsgSalvar: String);
 
   end;
 
@@ -33,20 +33,19 @@ begin
     Dataset.Edit;
 end;
 
-procedure TBotoes.botaoExcluir(Dataset: TDataSet);
+procedure TBotoes.botaoExcluir(Dataset: TSimpleDataSet);
 var
   aviso: Integer;
 begin
   Application.Title := 'Atenção!';
-  aviso := MessageDlg('Deseja mesmo excluir o registro?', mtConfirmation,
-    [mbYes, mbNo], 0);
+  aviso := MessageDlg('Deseja mesmo excluir o registro?', mtConfirmation, [mbYes, mbNo], 0);
   if aviso = mrYes then
   begin
     Dataset.Delete;
-    if Dataset is TClientDataSet then
-      TClientDataSet(Dataset).ApplyUpdates(0);
+    Dataset.ApplyUpdates(0);
   end;
 end;
+
 
 procedure TBotoes.botaoNovo(Dataset: TDataSet; IDField: string);
 var
@@ -59,12 +58,11 @@ begin
 
 end;
 
-procedure TBotoes.botaoSalvar(Dataset: TDataSet);
+procedure TBotoes.botaoSalvar(Dataset: TSimpleDataSet; MsgSalvar: String);
 begin
   Dataset.Post;
-  if Dataset is TClientDataSet then
-    TClientDataSet(Dataset).ApplyUpdates(0);
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
+  Dataset.ApplyUpdates(0);
+  MessageDlg(MsgSalvar, mtInformation, [mbOK], 0);
 end;
 
 end.

@@ -14,7 +14,6 @@ inherited viewClientes: TviewClientes
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
-      ActivePage = tbsCadastro
       inherited tbsCadastro: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24

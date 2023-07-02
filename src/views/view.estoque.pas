@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls,
-  Vcl.Mask, JvExControls, JvDBLookup, dm.conexao, DB, Vcl.Grids, Vcl.DBGrids;
+  Vcl.Mask, JvExControls, JvDBLookup, dm.conexao, DB, Vcl.Grids, Vcl.DBGrids, botoes;
 
 type
   TviewEstoque = class(TviewBaseListas)
@@ -32,11 +32,10 @@ type
   private
     procedure desativarBotoes;
     procedure limparDados;
-    procedure ImpedirDeEditar;
-    // É para quando abre o form impedir que seja editado antes que se adicione um novo registro
-    procedure permitirEditar;
+    procedure impedirPermitirEditar(Value: Boolean); // quando abre o form impedir que seja editado antes que se adicione um novo registro
+    var lCrudBotoes: TBotoes;
   public
-    { Public declarations }
+
   end;
 
 var
@@ -49,13 +48,14 @@ implementation
 procedure TviewEstoque.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  if DmConexao.sdsEstoque.State in dsEditModes then
-  // pra essa merda de Editmodes funcionar tem que importar a uses DB
-    DmConexao.sdsEstoque.Cancel;
+  try
+    lCrudBotoes.botaoCancelar(DmConexao.sdsEstoque);
+  finally
+    lCrudBotoes.Free;
+  end;
   desativarBotoes;
-   // trazer formulario limpo (sem dados)
-  DmConexao.sdsEstoque.Append;
-  ImpedirDeEditar;
+  DmConexao.sdsEstoque.Append; // trazer formulario limpo (sem dados)
+  impedirPermitirEditar(True); // readOnly ativado
 end;
 
 procedure TviewEstoque.btnNovoClick(Sender: TObject);
@@ -63,12 +63,12 @@ var
   proxregistro: Integer;
 begin
   inherited;
-  // Criar novo registro na tabela
   PageControl1.TabIndex := 0;
-  DmConexao.sdsEstoque.Last;
-  proxregistro := DmConexao.sdsEstoqueID.AsInteger + 1;
-  DmConexao.sdsEstoque.Append;
-  DmConexao.sdsEstoqueID.AsInteger := proxregistro;
+  try
+    lCrudBotoes.botaoNovo(DmConexao.sdsEstoque, 'ID');
+  finally
+    lCrudBotoes.Free;
+  end;
 
   // trazer a informação da data já preenchida
   DmConexao.sdsEstoqueDATA.AsDateTime := Now;
@@ -80,7 +80,7 @@ begin
   btnNovo.Visible := False;
 
   // tirar do modo readOnly
-  permitirEditar;
+  impedirPermitirEditar(False);
 end;
 
 procedure TviewEstoque.btnPesquisaClick(Sender: TObject);
@@ -94,14 +94,14 @@ end;
 procedure TviewEstoque.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsEstoque.Post;
-  DmConexao.sdsEstoque.ApplyUpdates(0);
-  DmConexao.sdsProdutos.Refresh;
-  MessageDlg('Estoque salvo com sucesso!', mtInformation, [mbOK], 0);
+  try
+    lCrudBotoes.botaoSalvar(DmConexao.sdsEstoque, 'Estoque registrado com sucesso!');
+  finally
+    lCrudBotoes.Free;
+  end;
   desativarBotoes;
-  // trazer formulario limpo (sem dados)
-  DmConexao.sdsEstoque.Append;
-  ImpedirDeEditar;
+  DmConexao.sdsEstoque.Append; // trazer formulario limpo (sem dados)
+  impedirPermitirEditar(True);
 end;
 
 procedure TviewEstoque.desativarBotoes;   //desativar botões não utilizados que estão herdados
@@ -132,7 +132,7 @@ begin
 
   // trazer formulario limpo (sem dados)
   DmConexao.sdsEstoque.Append;
-  ImpedirDeEditar;
+  impedirPermitirEditar(True);
 end;
 
 procedure TviewEstoque.FormShow(Sender: TObject);
@@ -140,16 +140,6 @@ begin
   inherited;
   // desativar botões ao abrir FORM
   desativarBotoes;
-
-end;
-
-procedure TviewEstoque.ImpedirDeEditar;
-begin
-  edtData.ReadOnly := True;
-  lookupProd.ReadOnly := True;
-  edtQtd.ReadOnly := True;
-  edtObs.ReadOnly := True;
-
 end;
 
 procedure TviewEstoque.limparDados;
@@ -160,13 +150,12 @@ begin
   DmConexao.sdsEstoqueOBS.Clear;
 end;
 
-procedure TviewEstoque.permitirEditar;
+procedure TviewEstoque.impedirPermitirEditar(Value: Boolean);
 begin
-  edtData.ReadOnly := False;
-  lookupProd.ReadOnly := False;
-  edtQtd.ReadOnly := False;
-  edtObs.ReadOnly := False;
-
+  edtData.ReadOnly := Value;
+  lookupProd.ReadOnly := Value;
+  edtQtd.ReadOnly := Value;
+  edtObs.ReadOnly := Value;
 end;
 
 end.
