@@ -23,7 +23,7 @@ uses
   view.fornecedores,
   view.produtos,
   Vcl.Menus,
-  view.estoque, view.funcionarios, view.empresa;
+  view.estoque, view.funcionarios, view.empresa, System.ImageList;
 
 type
   TfrmPrincipal = class(TForm)

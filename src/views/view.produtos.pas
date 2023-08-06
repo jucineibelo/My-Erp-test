@@ -22,16 +22,9 @@ uses
   Vcl.DBCtrls,
   Vcl.Mask,
   DB,
-  IWVCLBaseControl,
-  IWBaseControl,
-  IWBaseHTMLControl,
-  IWControl,
-  IWCompListbox,
-  IWDBStdCtrls,
   Vcl.Grids,
-  Vcl.DBGrids,
-  JvExControls,
-  JvDBLookup;
+  Vcl.DBGrids, botoes, Vcl.WinXCtrls;
+
 
 type
   TviewProdutos = class(TviewBaseListas)
@@ -44,7 +37,6 @@ type
     PREÇO: TLabel;
     SpeedButton1: TSpeedButton;
     DBGrid1: TDBGrid;
-    LkFornecedor: TJvDBLookupCombo;
     pnlQtd: TPanel;
     Qtde: TDBText;
     lblData: TLabel;
@@ -52,6 +44,7 @@ type
     dbTxtID: TDBText;
     lblID: TLabel;
     lblEstoque: TLabel;
+    LookupFornecedor: TDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -61,7 +54,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
   private
-    { Private declarations }
+    var lCrudBotoes: TBotoes;
   public
     { Public declarations }
   end;
@@ -76,8 +69,7 @@ implementation
 procedure TviewProdutos.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  if DmConexao.sdsProdutos.State in dsEditModes then
-    DmConexao.sdsProdutos.Cancel;
+  lCrudBotoes.botaoCancelar(DmConexao.sdsProdutos);
   PageControl1.TabIndex := 1;
 end;
 
@@ -85,38 +77,22 @@ procedure TviewProdutos.btnEditarClick(Sender: TObject);
 begin
   inherited;
   PageControl1.TabIndex := 0;
-  if DmConexao.sdsProdutos.State = dsBrowse then
-    DmConexao.sdsProdutos.Edit;
+  lCrudBotoes.botaoEditar(DmConexao.sdsProdutos, DmConexao.sdsProdutos.FieldByName('PROD_DATA_CADASTRO'));
   edtDescricao.SetFocus;
 end;
 
 procedure TviewProdutos.btnExcluirClick(Sender: TObject);
-var
-  aviso: Integer;
 begin
   inherited;
-  Application.Title := 'Atenção!';
-  aviso := Application.MessageBox('Deseja mesmo excluir o registro? ',
-    'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
-  if aviso <> IDNO then
-    DmConexao.sdsProdutos.Delete;
-  DmConexao.sdsProdutos.ApplyUpdates(0);
+  lCrudBotoes.botaoExcluir(DmConexao.sdsProdutos);
 end;
 
 procedure TviewProdutos.btnNovoClick(Sender: TObject);
-
-var
-  proxregistro: Integer;
 begin
   inherited;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsProdutos.Last;
-  proxregistro := DmConexao.sdsProdutosPROD_ID.AsInteger + 1;
-  DmConexao.sdsProdutos.Append;
-  DmConexao.sdsProdutosPROD_ID.AsInteger := proxregistro;
-  //receber o edt já com a data que vai cadastrar
-  DmConexao.sdsProdutosPROD_DATA_CADASTRO.AsDateTime := Now;
-  LkFornecedor.SetFocus;
+  lCrudBotoes.botaoNovo(DmConexao.sdsProdutos,'PROD_ID', DmConexao.sdsProdutos.FieldByName('PROD_DATA_CADASTRO'));
+  LookupFornecedor.SetFocus;
 end;
 
 procedure TviewProdutos.btnPesquisaClick(Sender: TObject);
@@ -130,24 +106,21 @@ end;
 procedure TviewProdutos.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsProdutos.Post;
-  DmConexao.sdsProdutos.ApplyUpdates(0);
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-  PageControl1.TabIndex := 1;
+  lCrudBotoes.botaoSalvar(DmConexao.sdsProdutos, 'Registro salvo com sucesso!')
 end;
 
 procedure TviewProdutos.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   DmConexao.sdsProdutos.Close;
+  DmConexao.sdsFornecedores.Close;
 end;
 
 procedure TviewProdutos.FormCreate(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsProdutos.Active := True;
-  DmConexao.sdsFornecedores.Active := True;
-  DmConexao.sdsProdutos.Append;
+  DmConexao.sdsProdutos.Open;
+  DmConexao.sdsFornecedores.Open;
 end;
 
 end.

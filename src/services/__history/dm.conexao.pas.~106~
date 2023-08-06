@@ -1,0 +1,159 @@
+unit dm.conexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.SqlExpr,
+  Datasnap.DBClient, SimpleDS, view.clientes, view.fornecedores, IniFiles,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef,
+  FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet;
+
+type
+  TDmConexao = class(TDataModule)
+    dsClientes: TDataSource;
+    dsFornecedores: TDataSource;
+    dsProdutos: TDataSource;
+    dsEstoque: TDataSource;
+    dsFuncionarios: TDataSource;
+    sdEmpresa: TDataSource;
+    SQLConexao: TFDConnection;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    sdsEmpresa: TFDQuery;
+    sdsClientes: TFDQuery;
+    sdsFornecedor: TFDQuery;
+    sdsProdutos: TFDQuery;
+    sdsEstoque: TFDQuery;
+    sdsFuncionarios: TFDQuery;
+    sdsProdutosPROD_ID: TIntegerField;
+    sdsProdutosPROD_DESCRICAO: TStringField;
+    sdsProdutosPROD_MARCA: TStringField;
+    sdsProdutosPROD_FORNECEDOR: TIntegerField;
+    sdsProdutosPROD_PRECO: TFMTBCDField;
+    sdsProdutosPROD_DATA_CADASTRO: TDateField;
+    sdsProdutosQTDTOTAL: TFMTBCDField;
+    sdsProdutosFORNECEDOR_RAZAO: TStringField;
+    sdsEmpresaRAZAO_SOCIAL: TStringField;
+    sdsEmpresaCNPJ_CPF: TStringField;
+    sdsEmpresaIE_RG: TStringField;
+    sdsEmpresaENDERECO: TStringField;
+    sdsEmpresaMUNICIPIO: TStringField;
+    sdsEmpresaESTADO: TStringField;
+    sdsEmpresaEMAIL: TStringField;
+    sdsEmpresaTELEFONE: TStringField;
+    sdsClientesCLIENTE_ID: TIntegerField;
+    sdsClientesCLIENTE_RAZAO: TStringField;
+    sdsClientesCLIENTE_TELEFONE: TStringField;
+    sdsClientesCLIENTE_CPF: TStringField;
+    sdsClientesCLIENTE_CNPJ: TStringField;
+    sdsClientesCLIENTE_RG: TStringField;
+    sdsClientesCLIENTE_IE: TStringField;
+    sdsClientesCLIENTE_OBS: TStringField;
+    sdsClientesCLIENTE_ENDERECO: TStringField;
+    sdsClientesCLIENTE_CIDADE: TStringField;
+    sdsClientesCLIENTE_ESTADO: TStringField;
+    sdsClientesCLIENTE_TIPO: TStringField;
+    sdsClientesDATA_CADASTRO: TDateField;
+    sdsFornecedorFORNECEDOR_ID: TIntegerField;
+    sdsFornecedorFORNECEDOR_RAZAO: TStringField;
+    sdsFornecedorFORNECEDOR_TELEFONE: TStringField;
+    sdsFornecedorFORNECEDOR_CPF: TStringField;
+    sdsFornecedorFORNECEDOR_CNPJ: TStringField;
+    sdsFornecedorFORNECEDOR_RG: TStringField;
+    sdsFornecedorFORNECEDOR_IE: TStringField;
+    sdsFornecedorFORNECEDOR_OBS: TStringField;
+    sdsFornecedorFORNECEDOR_ENDERECO: TStringField;
+    sdsFornecedorDATA_CADASTRO: TDateField;
+    sdsFornecedorFORNECEDOR_CIDADE: TStringField;
+    sdsFornecedorFORNECEDOR_ESTADO: TStringField;
+    sdsFornecedorFORNECEDOR_TIPO: TStringField;
+    sdsFornecedorTIPO_PESSOA: TStringField;
+    sdsEstoqueID: TIntegerField;
+    sdsEstoqueDATA: TDateField;
+    sdsEstoquePRODUTO: TIntegerField;
+    sdsEstoqueQTD: TFMTBCDField;
+    sdsEstoqueOBS: TBlobField;
+    sdsFuncionariosCODIGO: TIntegerField;
+    sdsFuncionariosNOME: TStringField;
+    sdsFuncionariosSETOR: TStringField;
+    sdsFuncionariosCARGO: TStringField;
+    sdsFuncionariosUSUARIO: TStringField;
+    sdsFuncionariosSENHA: TStringField;
+    sdsFuncionariosDATA_CADASTRO: TDateField;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure sdsClientesBeforeEdit(DataSet: TDataSet);
+    procedure sdsFornecedoresBeforeEdit(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    function caminhDoConfigTxt: string;
+  end;
+
+var
+  DmConexao: TDmConexao;
+
+implementation
+
+{$R *.dfm}
+
+function TDmConexao.caminhDoConfigTxt: string;
+var
+  ini: Tinifile;
+  path: string;
+begin
+  ini := Tinifile.Create(ExtractFilePath(ParamStr(0)) + '\Config.ini');
+  path := ini.ReadString('BASE', 'BASE', 'ADM');
+  result := path;
+end;
+
+procedure TDmConexao.DataModuleCreate(Sender: TObject);
+begin
+  with SQLConexao do
+  begin
+    Close;
+    Params.Values['DataBase'] := caminhDoConfigTxt;
+    Open;
+  end;
+end;
+
+procedure TDmConexao.sdsClientesBeforeEdit(DataSet: TDataSet);
+begin
+  if DmConexao.sdsClientesCLIENTE_TIPO.AsString = 'F' then
+  begin
+    viewClientes.edtCPF.Enabled := True;
+    viewClientes.edtRG.Enabled := True;
+    viewClientes.edtCNPJ.Enabled := False;
+    viewClientes.edtIE.Enabled := False;
+  end
+  else if DmConexao.sdsClientesCLIENTE_TIPO.AsString = 'J' then
+  begin
+    viewClientes.edtCPF.Enabled := False;
+    viewClientes.edtRG.Enabled := False;
+    viewClientes.edtCNPJ.Enabled := True;
+    viewClientes.edtIE.Enabled := True;
+  end;
+end;
+
+procedure TDmConexao.sdsFornecedoresBeforeEdit(DataSet: TDataSet);
+begin
+  if DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString = 'F' then
+  begin
+    viewFornecedores.edtCPF.Enabled := True;
+    viewFornecedores.edtRG.Enabled := True;
+    viewFornecedores.edtCNPJ.Enabled := False;
+    viewFornecedores.edtIE.Enabled := False;
+  end
+  else if DmConexao.sdsFornecedoresFORNECEDOR_TIPO.AsString = 'J' then
+  begin
+    viewFornecedores.edtCPF.Enabled := False;
+    viewFornecedores.edtRG.Enabled := False;
+    viewFornecedores.edtCNPJ.Enabled := True;
+    viewFornecedores.edtIE.Enabled := True;
+  end;
+
+end;
+
+end.

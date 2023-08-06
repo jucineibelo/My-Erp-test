@@ -60,7 +60,7 @@ begin
   inherited;
   edtRazao.SetFocus;
   try
-    LCrudBotoes.botaoEditar(DmConexao.sdsEmpresa);
+    LCrudBotoes.botaoEditar(DmConexao.sdsEmpresa, nil); //porque não tem informação de data nessa tabela do banco
   finally
     LCrudBotoes.Free;
   end;

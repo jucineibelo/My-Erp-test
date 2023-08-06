@@ -22,7 +22,6 @@ uses
   Vcl.DBCtrls,
   Vcl.Grids,
   Vcl.DBGrids,
-  Data.DBXFirebird,
   Datasnap.DBClient,
   SimpleDS,
   DB, botoes;
@@ -64,10 +63,9 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
-    procedure edtDataChange(Sender: TObject);
     procedure dbRgTipoPessoaChange(Sender: TObject);
   private
-    var CrudBotoes: TBotoes;
+    lCrudBotoes: TBotoes;
     procedure habilitaDesabilitaTipoPessoa(status : Boolean);
 
   public
@@ -87,9 +85,9 @@ procedure TviewFornecedores.btnCancelarClick(Sender: TObject);
 begin
   inherited;
   try
-    CrudBotoes.botaoCancelar(DmConexao.sdsFornecedores);
+    LCrudBotoes.botaoCancelar(DmConexao.sdsFornecedores);
   finally
-    CrudBotoes.Free;
+    LCrudBotoes.Free;
   end;
   PageControl1.TabIndex := 1;
 
@@ -101,9 +99,9 @@ begin
   PageControl1.TabIndex := 0;
   edtRazao.SetFocus;
   try
-    CrudBotoes.botaoEditar(DmConexao.sdsFornecedores);
+    LCrudBotoes.botaoEditar(DmConexao.sdsFornecedores, DmConexao.sdsFuncionarios.FieldByName('DATA_CADASTRO'));
   finally
-    CrudBotoes.Free;
+    LCrudBotoes.Free;
   end;
 end;
 
@@ -111,22 +109,21 @@ procedure TviewFornecedores.btnExcluirClick(Sender: TObject);
 begin
   inherited;
   try
-    CrudBotoes.botaoExcluir(DmConexao.sdsFornecedores);
+    LCrudBotoes.botaoExcluir(DmConexao.sdsFornecedores);
   finally
-    CrudBotoes.Free;
+    LCrudBotoes.Free;
   end;
 end;
 
 procedure TviewFornecedores.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  try
-    CrudBotoes.botaoNovo(DmConexao.sdsFornecedores, 'FORNECEDOR_ID');
-  finally
-    CrudBotoes.Free;
-  end;
   PageControl1.TabIndex := 0;
-  DmConexao.sdsFornecedoresDATA_CADASTRO.AsDateTime := Now;  //receber data atual
+  try
+    lCrudBotoes.botaoNovo(DmConexao.sdsFornecedores, 'FORNECEDOR_ID', DmConexao.sdsFornecedores.FieldByName('DATA_CADASTRO'));
+  finally
+    LCrudBotoes.Free;
+  end;
   edtRazao.SetFocus;
 end;
 
@@ -154,9 +151,9 @@ procedure TviewFornecedores.btnSalvarClick(Sender: TObject);
 begin
   inherited;
   try
-    CrudBotoes.botaoSalvar(DmConexao.sdsFornecedores, 'Fornecedor salvo com sucesso!');
+    LCrudBotoes.botaoSalvar(DmConexao.sdsFornecedores, 'Fornecedor salvo com sucesso!');
   finally
-    CrudBotoes.Free;
+    LCrudBotoes.Free;
   end;
   PageControl1.TabIndex := 1;
 end;
@@ -170,14 +167,6 @@ begin
     habilitaDesabilitaTipoPessoa(False);
 end;
 
-procedure TviewFornecedores.edtDataChange(Sender: TObject);
-begin
-  inherited;
-  //se estiver em modo de edição e o campo data estiver vazio ao passar pelo edit ele atribui a data atual
-  if (DmConexao.sdsFornecedores.State = dsEdit)  and (DmConexao.sdsFornecedoresDATA_CADASTRO.AsDateTime <> null) then
-    DmConexao.sdsFornecedoresDATA_CADASTRO.AsDateTime := Now;
-end;
-
 procedure TviewFornecedores.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -189,7 +178,6 @@ procedure TviewFornecedores.FormCreate(Sender: TObject);
 begin
   inherited;
   DmConexao.sdsFornecedores.Open;
-  DmConexao.sdsFornecedores.Append;
 end;
 
 procedure TviewFornecedores.FormShow(Sender: TObject);

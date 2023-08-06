@@ -1,12 +1,13 @@
 ﻿inherited viewProdutos: TviewProdutos
   Caption = 'viewProdutos'
   OnClose = FormClose
-  PixelsPerInch = 96
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
+      Width = 903
+      Height = 29
       Caption = 'Produtos'
-      ExplicitWidth = 77
+      ExplicitWidth = 903
     end
   end
   inherited pnlLinhaFundo: TPanel
@@ -114,13 +115,13 @@
         end
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
-            Width = 236
+            Width = 206
             Caption = '[ Cadastro de Produtos ]'
-            ExplicitWidth = 236
+            ExplicitWidth = 206
           end
         end
         inherited DBEdit1: TDBEdit
-          TabOrder = 7
+          TabOrder = 2
         end
         object edtDescricao: TDBEdit
           Left = 150
@@ -148,18 +149,6 @@
           DataField = 'PROD_PRECO'
           DataSource = DmConexao.dsProdutos
           TabOrder = 5
-        end
-        object LkFornecedor: TJvDBLookupCombo
-          Left = 393
-          Top = 137
-          Width = 216
-          Height = 21
-          DataField = 'PROD_FORNECEDOR'
-          DataSource = DmConexao.dsProdutos
-          LookupField = 'FORNECEDOR_ID'
-          LookupDisplay = 'FORNECEDOR_RAZAO'
-          LookupSource = DmConexao.dsFornecedores
-          TabOrder = 2
         end
         object pnlQtd: TPanel
           Left = 0
@@ -207,6 +196,18 @@
           DataField = 'PROD_DATA_CADASTRO'
           DataSource = DmConexao.dsProdutos
           TabOrder = 1
+        end
+        object LookupFornecedor: TDBLookupComboBox
+          Left = 393
+          Top = 137
+          Width = 216
+          Height = 21
+          DataField = 'PROD_FORNECEDOR'
+          DataSource = DmConexao.dsProdutos
+          KeyField = 'FORNECEDOR_ID'
+          ListField = 'FORNECEDOR_RAZAO'
+          ListSource = DmConexao.dsFornecedores
+          TabOrder = 7
         end
       end
       inherited tsConsulta: TTabSheet

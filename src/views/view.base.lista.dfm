@@ -8,7 +8,6 @@ inherited viewBaseListas: TviewBaseListas
   OnCreate = FormCreate
   ExplicitWidth = 1024
   ExplicitHeight = 550
-  PixelsPerInch = 96
   TextHeight = 13
   object panelTop: TPanel
     Left = 0
@@ -24,8 +23,8 @@ inherited viewBaseListas: TviewBaseListas
       AlignWithMargins = True
       Left = 38
       Top = 3
-      Width = 70
-      Height = 25
+      Width = 903
+      Height = 29
       Cursor = crHandPoint
       Align = alClient
       Caption = 'lblTitulo'
@@ -36,6 +35,8 @@ inherited viewBaseListas: TviewBaseListas
       Font.Style = [fsBold]
       ParentFont = False
       OnMouseDown = lblTituloMouseDown
+      ExplicitWidth = 70
+      ExplicitHeight = 25
     end
     object panelIcone: TPanel
       Left = 0
@@ -137,16 +138,12 @@ inherited viewBaseListas: TviewBaseListas
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 0
-      ActivePage = tsConsulta
+      ActivePage = tbsCadastro
       Align = alClient
       TabOrder = 0
       object tbsCadastro: TTabSheet
         Caption = 'Cadastro'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 0
           Top = 0
@@ -160,16 +157,18 @@ inherited viewBaseListas: TviewBaseListas
           object lblTituloCadastro: TLabel
             Left = 398
             Top = 16
-            Width = 193
-            Height = 30
+            Width = 169
+            Height = 25
             Align = alCustom
             Alignment = taCenter
             Caption = '[T'#237'tulo do Cadastro]'
+            Color = clBlack
             Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
+            Font.Color = clBlack
+            Font.Height = -19
             Font.Name = 'Segoe UI Semibold'
             Font.Style = [fsBold]
+            ParentColor = False
             ParentFont = False
           end
         end
@@ -185,10 +184,6 @@ inherited viewBaseListas: TviewBaseListas
       end
       object tsConsulta: TTabSheet
         Caption = 'Consulta'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object pnlPesquisa: TPanel
           Left = 0
           Top = 0
@@ -261,7 +256,7 @@ inherited viewBaseListas: TviewBaseListas
         Flat = True
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -15
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
@@ -282,7 +277,7 @@ inherited viewBaseListas: TviewBaseListas
         Flat = True
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -15
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
@@ -305,11 +300,9 @@ inherited viewBaseListas: TviewBaseListas
         Flat = True
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -15
         Font.Name = 'Segoe UI Semibold'
-        Font.Pitch = fpFixed
         Font.Style = [fsBold]
-        Font.Quality = fqProof
         ParentFont = False
         OnClick = btnCancelarClick
         ExplicitLeft = 632
@@ -330,7 +323,7 @@ inherited viewBaseListas: TviewBaseListas
         Flat = True
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -15
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
@@ -351,7 +344,7 @@ inherited viewBaseListas: TviewBaseListas
         Flat = True
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -15
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False

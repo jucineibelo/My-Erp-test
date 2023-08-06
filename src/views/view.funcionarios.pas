@@ -3,11 +3,28 @@ unit view.funcionarios;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls, Vcl.Mask,
-  Vcl.DBCtrls, Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  dm.conexao, DB, Vcl.Grids, Vcl.DBGrids, botoes;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  view.base.lista,
+  Vcl.StdCtrls,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.ComCtrls,
+  Vcl.Buttons,
+  Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls,
+  dm.conexao,
+  DB,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  botoes;
 
 type
   TviewFuncionarios = class(TviewBaseListas)
@@ -31,10 +48,10 @@ type
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure tbsCadastroShow(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
   private
-    var lCrudBotoes : TBotoes;
+  var lCrudBotoes : TBotoes;
+
   public
     { Public declarations }
   end;
@@ -59,8 +76,7 @@ begin
   inherited;
   PageControl1.TabIndex := 0;
   edtNome.SetFocus;
-  lCrudBotoes.botaoNovo(DmConexao.sdsFuncionarios, 'CODIGO');
-  DmConexao.sdsFuncionariosDATA_CADASTRO.AsDateTime := Now;
+  lCrudBotoes.botaoNovo(DmConexao.sdsFuncionarios, 'CODIGO', DmConexao.sdsFuncionarios.FieldByName('DATA_CADASTRO'));
  end;
 
 procedure TviewFuncionarios.btnPesquisaClick(Sender: TObject);
@@ -83,13 +99,6 @@ procedure TviewFuncionarios.FormCreate(Sender: TObject);
 begin
   inherited;
   DmConexao.sdsFuncionarios.Open;
-  DmConexao.sdsFuncionarios.Append;
-end;
-
-procedure TviewFuncionarios.tbsCadastroShow(Sender: TObject);
-begin
-  inherited;
-  DmConexao.sdsFuncionarios.Append;
 end;
 
 end.

@@ -1,0 +1,404 @@
+object DmConexao: TDmConexao
+  OnCreate = DataModuleCreate
+  Height = 494
+  Width = 439
+  object dsClientes: TDataSource
+    DataSet = sdsClientes
+    Left = 130
+    Top = 83
+  end
+  object dsFornecedores: TDataSource
+    DataSet = sdsFornecedores
+    Left = 136
+    Top = 152
+  end
+  object dsProdutos: TDataSource
+    DataSet = sdsProdutos
+    Left = 136
+    Top = 216
+  end
+  object dsEstoque: TDataSource
+    DataSet = sdsEstoque
+    Left = 136
+    Top = 286
+  end
+  object dsFuncionarios: TDataSource
+    DataSet = sdsFuncionarios
+    Left = 142
+    Top = 350
+  end
+  object sdEmpresa: TDataSource
+    DataSet = sdsEmpresa
+    Left = 128
+    Top = 14
+  end
+  object SQLConexao: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\User-J\Desktop\Projetos Delphi\CURSO YOUTUBE\E' +
+        'RP Basico\Banco de Dados\DATABASE.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 320
+    Top = 38
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    Left = 326
+    Top = 109
+  end
+  object sdsEmpresa: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      'select * from EMPRESA')
+    Left = 38
+    Top = 18
+    object sdsEmpresaRAZAO_SOCIAL: TStringField
+      FieldName = 'RAZAO_SOCIAL'
+      Origin = 'RAZAO_SOCIAL'
+      Required = True
+      Size = 100
+    end
+    object sdsEmpresaCNPJ_CPF: TStringField
+      FieldName = 'CNPJ_CPF'
+      Origin = 'CNPJ_CPF'
+      Size = 30
+    end
+    object sdsEmpresaIE_RG: TStringField
+      FieldName = 'IE_RG'
+      Origin = 'IE_RG'
+      Size = 15
+    end
+    object sdsEmpresaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Size = 100
+    end
+    object sdsEmpresaMUNICIPIO: TStringField
+      FieldName = 'MUNICIPIO'
+      Origin = 'MUNICIPIO'
+    end
+    object sdsEmpresaESTADO: TStringField
+      FieldName = 'ESTADO'
+      Origin = 'ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object sdsEmpresaEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 30
+    end
+    object sdsEmpresaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+    end
+  end
+  object sdsClientes: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      'select c.*,'
+      'case when c.cliente_tipo = '#39'F'#39' then c.cliente_cpf'
+      'else c.cliente_cnpj end "Tipo de Cliente"'
+      'from clientes c'
+      'order by c.cliente_id asc')
+    Left = 38
+    Top = 82
+    object sdsClientesCLIENTE_ID: TIntegerField
+      FieldName = 'CLIENTE_ID'
+      Origin = 'CLIENTE_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsClientesCLIENTE_RAZAO: TStringField
+      FieldName = 'CLIENTE_RAZAO'
+      Origin = 'CLIENTE_RAZAO'
+      Required = True
+      Size = 100
+    end
+    object sdsClientesCLIENTE_TELEFONE: TStringField
+      FieldName = 'CLIENTE_TELEFONE'
+      Origin = 'CLIENTE_TELEFONE'
+    end
+    object sdsClientesCLIENTE_CPF: TStringField
+      FieldName = 'CLIENTE_CPF'
+      Origin = 'CLIENTE_CPF'
+    end
+    object sdsClientesCLIENTE_CNPJ: TStringField
+      FieldName = 'CLIENTE_CNPJ'
+      Origin = 'CLIENTE_CNPJ'
+    end
+    object sdsClientesCLIENTE_RG: TStringField
+      FieldName = 'CLIENTE_RG'
+      Origin = 'CLIENTE_RG'
+    end
+    object sdsClientesCLIENTE_IE: TStringField
+      FieldName = 'CLIENTE_IE'
+      Origin = 'CLIENTE_IE'
+    end
+    object sdsClientesCLIENTE_OBS: TStringField
+      FieldName = 'CLIENTE_OBS'
+      Origin = 'CLIENTE_OBS'
+      Size = 200
+    end
+    object sdsClientesCLIENTE_ENDERECO: TStringField
+      FieldName = 'CLIENTE_ENDERECO'
+      Origin = 'CLIENTE_ENDERECO'
+      Size = 150
+    end
+    object sdsClientesCLIENTE_CIDADE: TStringField
+      FieldName = 'CLIENTE_CIDADE'
+      Origin = 'CLIENTE_CIDADE'
+      Size = 100
+    end
+    object sdsClientesCLIENTE_ESTADO: TStringField
+      FieldName = 'CLIENTE_ESTADO'
+      Origin = 'CLIENTE_ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object sdsClientesCLIENTE_TIPO: TStringField
+      FieldName = 'CLIENTE_TIPO'
+      Origin = 'CLIENTE_TIPO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsClientesDATA_CADASTRO: TDateField
+      FieldName = 'DATA_CADASTRO'
+      Origin = 'DATA_CADASTRO'
+      EditMask = '!99/99/0000;1;_'
+    end
+    object sdsClientesTipodeCliente: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Tipo de Cliente'
+      Origin = '"Tipo de Cliente"'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object sdsFornecedores: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      
+        'select f.fornecedor_id, f.fornecedor_razao, f.fornecedor_telefon' +
+        'e, f.fornecedor_cpf, f.fornecedor_cnpj, f.fornecedor_rg, f.forne' +
+        'cedor_ie,'
+      
+        'f.fornecedor_obs, f.fornecedor_endereco, f.data_cadastro, f.forn' +
+        'ecedor_cidade, f.fornecedor_estado, f.fornecedor_tipo,'
+      'case when f.fornecedor_tipo = '#39'J'#39' then f.fornecedor_cnpj'
+      'else f.fornecedor_cpf end as tipo_Pessoa'
+      'from fornecedores f')
+    Left = 38
+    Top = 152
+    object sdsFornecedoresFORNECEDOR_ID: TIntegerField
+      FieldName = 'FORNECEDOR_ID'
+      Origin = 'FORNECEDOR_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsFornecedoresFORNECEDOR_RAZAO: TStringField
+      FieldName = 'FORNECEDOR_RAZAO'
+      Origin = 'FORNECEDOR_RAZAO'
+      Required = True
+      Size = 100
+    end
+    object sdsFornecedoresFORNECEDOR_TELEFONE: TStringField
+      FieldName = 'FORNECEDOR_TELEFONE'
+      Origin = 'FORNECEDOR_TELEFONE'
+    end
+    object sdsFornecedoresFORNECEDOR_CPF: TStringField
+      FieldName = 'FORNECEDOR_CPF'
+      Origin = 'FORNECEDOR_CPF'
+    end
+    object sdsFornecedoresFORNECEDOR_CNPJ: TStringField
+      FieldName = 'FORNECEDOR_CNPJ'
+      Origin = 'FORNECEDOR_CNPJ'
+    end
+    object sdsFornecedoresFORNECEDOR_RG: TStringField
+      FieldName = 'FORNECEDOR_RG'
+      Origin = 'FORNECEDOR_RG'
+    end
+    object sdsFornecedoresFORNECEDOR_IE: TStringField
+      FieldName = 'FORNECEDOR_IE'
+      Origin = 'FORNECEDOR_IE'
+    end
+    object sdsFornecedoresFORNECEDOR_OBS: TStringField
+      FieldName = 'FORNECEDOR_OBS'
+      Origin = 'FORNECEDOR_OBS'
+      Size = 200
+    end
+    object sdsFornecedoresFORNECEDOR_ENDERECO: TStringField
+      FieldName = 'FORNECEDOR_ENDERECO'
+      Origin = 'FORNECEDOR_ENDERECO'
+      Size = 150
+    end
+    object sdsFornecedoresDATA_CADASTRO: TDateField
+      FieldName = 'DATA_CADASTRO'
+      Origin = 'DATA_CADASTRO'
+      EditMask = '!99/99/0000;1;_'
+    end
+    object sdsFornecedoresFORNECEDOR_CIDADE: TStringField
+      FieldName = 'FORNECEDOR_CIDADE'
+      Origin = 'FORNECEDOR_CIDADE'
+      Size = 100
+    end
+    object sdsFornecedoresFORNECEDOR_ESTADO: TStringField
+      FieldName = 'FORNECEDOR_ESTADO'
+      Origin = 'FORNECEDOR_ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object sdsFornecedoresFORNECEDOR_TIPO: TStringField
+      FieldName = 'FORNECEDOR_TIPO'
+      Origin = 'FORNECEDOR_TIPO'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsFornecedoresTIPO_PESSOA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'TIPO_PESSOA'
+      Origin = 'TIPO_PESSOA'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object sdsProdutos: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      
+        'select p.prod_id, p.prod_descricao, p.prod_marca, p.prod_fornece' +
+        'dor, p.prod_preco, p.prod_data_cadastro, sum(e.qtd) as QtdTotal,' +
+        ' f.fornecedor_razao'
+      'from produtos p'
+      'left join estoque e on e.produto = p.prod_id'
+      'left join fornecedores f on f.fornecedor_id = p.prod_fornecedor'
+      
+        'GROUP BY p.prod_id, p.prod_descricao, p.prod_marca, p.prod_forne' +
+        'cedor, p.prod_data_cadastro, p.prod_preco, f.fornecedor_razao')
+    Left = 38
+    Top = 216
+    object sdsProdutosPROD_ID: TIntegerField
+      FieldName = 'PROD_ID'
+      Origin = 'PROD_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsProdutosPROD_DESCRICAO: TStringField
+      FieldName = 'PROD_DESCRICAO'
+      Origin = 'PROD_DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object sdsProdutosPROD_MARCA: TStringField
+      FieldName = 'PROD_MARCA'
+      Origin = 'PROD_MARCA'
+      Size = 100
+    end
+    object sdsProdutosPROD_FORNECEDOR: TIntegerField
+      FieldName = 'PROD_FORNECEDOR'
+      Origin = 'PROD_FORNECEDOR'
+    end
+    object sdsProdutosPROD_PRECO: TFMTBCDField
+      FieldName = 'PROD_PRECO'
+      Origin = 'PROD_PRECO'
+      Precision = 18
+      Size = 2
+    end
+    object sdsProdutosPROD_DATA_CADASTRO: TDateField
+      FieldName = 'PROD_DATA_CADASTRO'
+      Origin = 'PROD_DATA_CADASTRO'
+    end
+    object sdsProdutosQTDTOTAL: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTDTOTAL'
+      Origin = 'QTDTOTAL'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object sdsProdutosFORNECEDOR_RAZAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'FORNECEDOR_RAZAO'
+      Origin = 'FORNECEDOR_RAZAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
+  end
+  object sdsEstoque: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      'select * from estoque')
+    Left = 38
+    Top = 286
+    object sdsEstoqueID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsEstoqueDATA: TDateField
+      FieldName = 'DATA'
+      Origin = '"DATA"'
+      Required = True
+    end
+    object sdsEstoquePRODUTO: TIntegerField
+      FieldName = 'PRODUTO'
+      Origin = 'PRODUTO'
+    end
+    object sdsEstoqueQTD: TFMTBCDField
+      FieldName = 'QTD'
+      Origin = 'QTD'
+      Precision = 18
+      Size = 2
+    end
+    object sdsEstoqueOBS: TBlobField
+      FieldName = 'OBS'
+      Origin = 'OBS'
+    end
+  end
+  object sdsFuncionarios: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      'select * from funcionarios')
+    Left = 38
+    Top = 350
+    object sdsFuncionariosCODIGO: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsFuncionariosNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 30
+    end
+    object sdsFuncionariosSETOR: TStringField
+      FieldName = 'SETOR'
+      Origin = 'SETOR'
+    end
+    object sdsFuncionariosCARGO: TStringField
+      FieldName = 'CARGO'
+      Origin = 'CARGO'
+    end
+    object sdsFuncionariosUSUARIO: TStringField
+      FieldName = 'USUARIO'
+      Origin = 'USUARIO'
+      Size = 30
+    end
+    object sdsFuncionariosSENHA: TStringField
+      FieldName = 'SENHA'
+      Origin = 'SENHA'
+      Size = 30
+    end
+    object sdsFuncionariosDATA_CADASTRO: TDateField
+      FieldName = 'DATA_CADASTRO'
+      Origin = 'DATA_CADASTRO'
+    end
+  end
+end

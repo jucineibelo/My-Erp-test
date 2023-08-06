@@ -1,30 +1,24 @@
 inherited viewFuncionarios: TviewFuncionarios
   Caption = 'viewFuncionarios'
-  PixelsPerInch = 96
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
       Width = 903
       Height = 29
       Caption = 'Funcion'#225'rios'
-      ExplicitWidth = 903
+      ExplicitWidth = 109
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
       inherited tbsCadastro: TTabSheet
-        OnShow = tbsCadastroShow
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
             Left = 394
-            Width = 263
+            Width = 233
             Caption = '[ Cadastro de Funcion'#225'rios]'
             ExplicitLeft = 394
-            ExplicitWidth = 263
+            ExplicitWidth = 233
           end
         end
         object Panel2: TPanel
@@ -164,10 +158,6 @@ inherited viewFuncionarios: TviewFuncionarios
         end
       end
       inherited tsConsulta: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         inherited pnlPesquisa: TPanel
           inherited btnPesquisa: TButton
             OnClick = btnPesquisaClick
