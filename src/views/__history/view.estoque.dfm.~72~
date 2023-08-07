@@ -2,24 +2,19 @@ inherited viewEstoque: TviewEstoque
   Caption = 'viewEstoque'
   OnClose = FormClose
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
       Width = 903
       Height = 29
       Caption = 'Estoque'
-      ExplicitWidth = 903
+      ExplicitWidth = 68
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
-      ActivePage = tbsCadastro
+      ActivePage = tsConsulta
       inherited tbsCadastro: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         object lblData: TLabel [0]
           Left = 167
           Top = 124
@@ -71,13 +66,13 @@ inherited viewEstoque: TviewEstoque
         end
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
-            Width = 147
+            Width = 127
             Caption = '     [ ESTOQUE ]'
-            ExplicitWidth = 147
+            ExplicitWidth = 127
           end
         end
         inherited DBEdit1: TDBEdit
-          TabOrder = 5
+          TabOrder = 2
         end
         object edtData: TDBEdit
           Left = 208
@@ -97,18 +92,6 @@ inherited viewEstoque: TviewEstoque
           DataSource = DmConexao.dsEstoque
           TabOrder = 4
         end
-        object lookupProd: TJvDBLookupCombo
-          Left = 499
-          Top = 121
-          Width = 329
-          Height = 21
-          DataField = 'PRODUTO'
-          DataSource = DmConexao.dsEstoque
-          LookupField = 'PROD_ID'
-          LookupDisplay = 'PROD_DESCRICAO'
-          LookupSource = DmConexao.dsProdutos
-          TabOrder = 2
-        end
         object edtQtd: TDBEdit
           Left = 205
           Top = 172
@@ -118,12 +101,20 @@ inherited viewEstoque: TviewEstoque
           DataSource = DmConexao.dsEstoque
           TabOrder = 3
         end
+        object lookupProd: TDBLookupComboBox
+          Left = 512
+          Top = 121
+          Width = 177
+          Height = 21
+          DataField = 'PRODUTO'
+          DataSource = DmConexao.dsEstoque
+          KeyField = 'PROD_ID'
+          ListField = 'PROD_DESCRICAO'
+          ListSource = DmConexao.dsProdutos
+          TabOrder = 5
+        end
       end
       inherited tsConsulta: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         inherited pnlPesquisa: TPanel
           inherited btnPesquisa: TButton
             OnClick = btnPesquisaClick
@@ -135,7 +126,7 @@ inherited viewEstoque: TviewEstoque
           Width = 1012
           Height = 370
           Align = alClient
-          DataSource = DmConexao.dsProdutos
+          DataSource = DmConexao.dsEstoque
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -145,21 +136,26 @@ inherited viewEstoque: TviewEstoque
           Columns = <
             item
               Expanded = False
-              FieldName = 'PROD_ID'
-              Title.Caption = 'ID'
+              FieldName = 'ID'
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'PROD_DESCRICAO'
-              Title.Caption = 'Descri'#231#227'o'
+              FieldName = 'DATA'
+              Title.Caption = 'Data de Cadastro'
+              Width = 120
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'QTDTOTAL'
+              FieldName = 'Nome do Produto'
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'QTD'
               Title.Caption = 'Quantidade'
-              Width = 100
               Visible = True
             end>
         end

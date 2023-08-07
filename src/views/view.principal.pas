@@ -43,7 +43,7 @@ type
     imgUsuarioBranco: TImage;
     pnlDadosUsuarios: TPanel;
     lblUsuario: TLabel;
-    lablPerfil: TLabel;
+    lblPerfil: TLabel;
     pnlLicensiado: TPanel;
     pnlLinhaRodape: TPanel;
     pnlConteudoLicensa: TPanel;
@@ -202,7 +202,7 @@ end;
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 //Parametro para carregar o nome da empresa
 var
-  sEmpresa, sFuncionario: string;
+  sEmpresa, sFuncionario, sCargo: string;
 begin
   if not DmConexao.sdsEmpresa.Active then
   // Verifica se o dataset já está aberto
@@ -210,10 +210,15 @@ begin
 
   try
     sEmpresa := DmConexao.sdsEmpresaRAZAO_SOCIAL.AsString;
+    sFuncionario := DmConexao.sdsFuncionariosNOME.AsString;
+    sCargo := DmConexao.sdsFuncionariosCARGO.AsString;
+
+    lblPerfil.Caption := sCargo;
     lblEmpresaLicenciada.Caption := sEmpresa;
+    lblUsuario.Caption := sFuncionario;
   except
     on E: Exception do
-      ShowMessage('Erro ao obter o nome da empresa: ' + E.Message);
+      ShowMessage('Erro ao dados da empresa: ' + E.Message);
   end;
   DmConexao.sdsEmpresa.Close;
 end;

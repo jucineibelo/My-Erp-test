@@ -315,9 +315,7 @@ object frmPrincipal: TfrmPrincipal
     000000040000200000000004000050000000000A0000A800000000150000D400
     0000002B0000C200000000430000E900000000970000F4800000012F0000FA40
     0000025F0000FC900000093F0000FF44000022FF0000FF90000009FF0000}
-  OldCreateOrder = False
-  OnCreate = FormCreate
-  PixelsPerInch = 96
+  OnShow = FormShow
   TextHeight = 13
   object Image1: TImage
     Left = 344
@@ -597,7 +595,7 @@ object frmPrincipal: TfrmPrincipal
           Left = 3
           Top = 10
           Width = 147
-          Height = 29
+          Height = 33
           Margins.Top = 10
           Margins.Bottom = 0
           Align = alClient
@@ -605,20 +603,20 @@ object frmPrincipal: TfrmPrincipal
           Caption = 'Nome '#218'suario'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
-          Font.Height = -19
+          Font.Height = -16
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 22
-          ExplicitWidth = 128
-          ExplicitHeight = 25
+          ExplicitLeft = 40
+          ExplicitWidth = 110
+          ExplicitHeight = 21
         end
-        object lablPerfil: TLabel
+        object lblPerfil: TLabel
           AlignWithMargins = True
           Left = 3
-          Top = 39
+          Top = 43
           Width = 147
-          Height = 21
+          Height = 17
           Margins.Top = 0
           Margins.Bottom = 10
           Align = alBottom
@@ -626,12 +624,13 @@ object frmPrincipal: TfrmPrincipal
           Caption = 'Administrador'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI Semibold'
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 45
-          ExplicitWidth = 105
+          ExplicitLeft = 61
+          ExplicitTop = 40
+          ExplicitWidth = 89
         end
       end
     end
@@ -2966,16 +2965,15 @@ object frmPrincipal: TfrmPrincipal
             Height = 15
             Margins.Bottom = 0
             Align = alTop
-            Alignment = taRightJustify
-            Caption = 'Licenciado Para:'
+            Alignment = taCenter
+            Caption = '  Licenciado Para:'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 212
-            ExplicitWidth = 86
+            ExplicitWidth = 92
           end
           object lblEmpresaLicenciada: TLabel
             Left = 0
@@ -2984,17 +2982,16 @@ object frmPrincipal: TfrmPrincipal
             Height = 26
             Margins.Top = 0
             Align = alClient
-            Alignment = taRightJustify
+            Alignment = taCenter
             Caption = 'EMPRESA X LTDA'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
-            Font.Height = -19
-            Font.Name = 'Segoe UI Semibold'
+            Font.Height = 0
+            Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 147
-            ExplicitWidth = 151
-            ExplicitHeight = 25
+            ExplicitWidth = 130
+            ExplicitHeight = 21
           end
         end
       end

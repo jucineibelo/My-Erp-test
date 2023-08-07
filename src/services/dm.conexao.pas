@@ -85,6 +85,7 @@ type
     sdsFornecedoresTIPO_PESSOA: TStringField;
     sdsClientesTipodeCliente: TStringField;
     sdsEstoqueNomedoProduto: TStringField;
+    sdsEstoqueTOTAL: TFMTBCDField;
     procedure DataModuleCreate(Sender: TObject);
     procedure sdsClientesBeforeEdit(DataSet: TDataSet);
     procedure sdsFornecedoresBeforeEdit(DataSet: TDataSet);

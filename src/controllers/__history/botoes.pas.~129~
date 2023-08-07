@@ -67,11 +67,11 @@ var
 begin
   if (DataSet.State in [dsBrowse, dsEdit]) then
   begin
-//    DataSet.Last;   // Último registro
-//    registro := DataSet.FieldByName(IDField).AsInteger + 1;
-//    DataSet.Append; // Coloca o dataset em modo de inserção
-//    DataSet.FieldByName(IDField).AsInteger := registro; // Atribuir o novo ID ao novo registro
-//    CampoData.AsDateTime := Now;
+    DataSet.Last;   // Último registro
+    registro := DataSet.FieldByName(IDField).AsInteger + 1;
+    DataSet.Insert; // Coloca o dataset em modo de inserção / antes eu usava DataSet.Append;
+    DataSet.FieldByName(IDField).AsInteger := registro; // Atribuir o novo ID ao novo registro
+    CampoData.AsDateTime := Now;
   end;
 end;
 

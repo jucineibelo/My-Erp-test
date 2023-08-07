@@ -315,9 +315,7 @@ object frmPrincipal: TfrmPrincipal
     000000040000200000000004000050000000000A0000A800000000150000D400
     0000002B0000C200000000430000E900000000970000F4800000012F0000FA40
     0000025F0000FC900000093F0000FF44000022FF0000FF90000009FF0000}
-  OldCreateOrder = False
-  OnCreate = FormCreate
-  PixelsPerInch = 96
+  OnShow = FormShow
   TextHeight = 13
   object Image1: TImage
     Left = 344
@@ -2966,16 +2964,15 @@ object frmPrincipal: TfrmPrincipal
             Height = 15
             Margins.Bottom = 0
             Align = alTop
-            Alignment = taRightJustify
-            Caption = 'Licenciado Para:'
+            Alignment = taCenter
+            Caption = '  Licenciado Para:'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 212
-            ExplicitWidth = 86
+            ExplicitWidth = 92
           end
           object lblEmpresaLicenciada: TLabel
             Left = 0
@@ -2984,17 +2981,16 @@ object frmPrincipal: TfrmPrincipal
             Height = 26
             Margins.Top = 0
             Align = alClient
-            Alignment = taRightJustify
+            Alignment = taCenter
             Caption = 'EMPRESA X LTDA'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
-            Font.Height = -12
+            Font.Height = 0
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 202
-            ExplicitWidth = 96
-            ExplicitHeight = 15
+            ExplicitWidth = 130
+            ExplicitHeight = 21
           end
         end
       end

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, view.base.lista, Vcl.StdCtrls,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls,
-  Vcl.Mask, JvExControls, JvDBLookup, dm.conexao, DB, Vcl.Grids, Vcl.DBGrids, botoes;
+  Vcl.Mask, dm.conexao, DB, Vcl.Grids, Vcl.DBGrids, botoes;
 
 type
   TviewEstoque = class(TviewBaseListas)
@@ -16,12 +16,12 @@ type
     edtObs: TDBMemo;
     lblObs: TLabel;
     lblProduto: TLabel;
-    lookupProd: TJvDBLookupCombo;
     edtQtd: TDBEdit;
     lblQtd: TLabel;
     id: TDBText;
     lblID: TLabel;
     DBGrid1: TDBGrid;
+    lookupProd: TDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -30,10 +30,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
   private
+    var LCrudBotoes : TBotoes;
     procedure desativarBotoes;
     procedure limparDados;
     procedure impedirPermitirEditar(Value: Boolean); // quando abre o form impedir que seja editado antes que se adicione um novo registro
-    var lCrudBotoes: TBotoes;
   public
 
   end;
@@ -59,19 +59,15 @@ begin
 end;
 
 procedure TviewEstoque.btnNovoClick(Sender: TObject);
-var
-  proxregistro: Integer;
 begin
   inherited;
   PageControl1.TabIndex := 0;
   try
-    lCrudBotoes.botaoNovo(DmConexao.sdsEstoque, 'ID');
+    lCrudBotoes.botaoNovo(DmConexao.sdsEstoque, 'ID', DmConexao.sdsEstoqueDATA);
   finally
     lCrudBotoes.Free;
   end;
 
-  // trazer a informação da data já preenchida
-  DmConexao.sdsEstoqueDATA.AsDateTime := Now;
   lookupProd.SetFocus;
 
 //  // ativar os botões

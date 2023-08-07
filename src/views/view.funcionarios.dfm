@@ -11,6 +11,7 @@ inherited viewFuncionarios: TviewFuncionarios
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
+      ActivePage = tsConsulta
       inherited tbsCadastro: TTabSheet
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
@@ -192,6 +193,12 @@ inherited viewFuncionarios: TviewFuncionarios
               Expanded = False
               FieldName = 'USUARIO'
               Width = 250
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'CARGO'
+              Width = 200
               Visible = True
             end>
         end

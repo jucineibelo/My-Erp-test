@@ -300,6 +300,7 @@ object DmConexao: TDmConexao
     object sdsProdutosPROD_PRECO: TFMTBCDField
       FieldName = 'PROD_PRECO'
       Origin = 'PROD_PRECO'
+      DisplayFormat = '0.00'
       Precision = 18
       Size = 2
     end
@@ -328,10 +329,12 @@ object DmConexao: TDmConexao
   object sdsEstoque: TFDQuery
     Connection = SQLConexao
     SQL.Strings = (
-      'select e.*, p.prod_descricao "Nome do Produto"'
+      'select e.*, p.prod_descricao "Nome do Produto",'
+      
+        '(select sum(e2.qtd) from estoque e2 where e2.produto = e.produto' +
+        ') as Total'
       'from estoque e'
-      'inner join produtos p'
-      'on p.prod_id = e.produto')
+      'inner join produtos p on p.prod_id = e.produto')
     Left = 38
     Top = 286
     object sdsEstoqueID: TIntegerField
@@ -366,6 +369,15 @@ object DmConexao: TDmConexao
       ProviderFlags = []
       ReadOnly = True
       Size = 100
+    end
+    object sdsEstoqueTOTAL: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTAL'
+      Origin = 'TOTAL'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
     end
   end
   object sdsFuncionarios: TFDQuery

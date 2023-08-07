@@ -23,7 +23,7 @@ uses
   view.fornecedores,
   view.produtos,
   Vcl.Menus,
-  view.estoque, view.funcionarios, view.empresa;
+  view.estoque, view.funcionarios, view.empresa, System.ImageList;
 
 type
   TfrmPrincipal = class(TForm)
@@ -102,7 +102,7 @@ var
 implementation
 
 uses
-  view.clientes, dm.conexao;
+  view.clientes, dm.conexao, view.vendas;
 
 {$R *.dfm}
 
@@ -167,7 +167,13 @@ end;
 
 procedure TfrmPrincipal.btnVendasClick(Sender: TObject);
 begin // Vendas
-
+  GetLineMenu(Sender);
+  viewVendas := TviewVendas.Create(Self);
+  try
+    viewVendas.ShowModal
+  finally
+    FreeAndNil(viewVendas);
+  end;
 end;
 
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
@@ -204,17 +210,14 @@ begin
 
   try
     sEmpresa := DmConexao.sdsEmpresaRAZAO_SOCIAL.AsString;
+    sFuncionario := DmConexao.sdsFuncionariosNOME.AsString;
     lblEmpresaLicenciada.Caption := sEmpresa;
+    lblUsuario.Caption := sFuncionario;
   except
     on E: Exception do
       ShowMessage('Erro ao obter o nome da empresa: ' + E.Message);
   end;
   DmConexao.sdsEmpresa.Close;
-
-  //Parametro para carregar o funcionario que logou
-
-
-
 end;
 
 procedure TfrmPrincipal.GetLineMenu(Sender: TObject);

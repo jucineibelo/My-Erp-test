@@ -58,6 +58,7 @@ begin
   DataSet.Delete;
   TFDDataSet(DataSet).ApplyUpdates;
   TFDDataSet(DataSet).CommitUpdates;
+  DataSet.Refresh;
 end;
 
 
@@ -86,6 +87,7 @@ begin
   DataSet.Post;
   TFDDataSet(DataSet).ApplyUpdates;
   TFDDataSet(DataSet).CommitUpdates;
+  DataSet.Refresh;
 
 end;
 

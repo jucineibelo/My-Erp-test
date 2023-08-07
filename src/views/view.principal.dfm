@@ -595,7 +595,7 @@ object frmPrincipal: TfrmPrincipal
           Left = 3
           Top = 10
           Width = 147
-          Height = 29
+          Height = 33
           Margins.Top = 10
           Margins.Bottom = 0
           Align = alClient
@@ -603,20 +603,20 @@ object frmPrincipal: TfrmPrincipal
           Caption = 'Nome '#218'suario'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
-          Font.Height = -19
+          Font.Height = -16
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 22
-          ExplicitWidth = 128
-          ExplicitHeight = 25
+          ExplicitLeft = 40
+          ExplicitWidth = 110
+          ExplicitHeight = 21
         end
-        object lablPerfil: TLabel
+        object lblPerfil: TLabel
           AlignWithMargins = True
           Left = 3
-          Top = 39
+          Top = 43
           Width = 147
-          Height = 21
+          Height = 17
           Margins.Top = 0
           Margins.Bottom = 10
           Align = alBottom
@@ -624,12 +624,13 @@ object frmPrincipal: TfrmPrincipal
           Caption = 'Administrador'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI Semibold'
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 45
-          ExplicitWidth = 105
+          ExplicitLeft = 61
+          ExplicitTop = 40
+          ExplicitWidth = 89
         end
       end
     end

@@ -82,9 +82,9 @@ end;
 procedure TviewEstoque.btnPesquisaClick(Sender: TObject);
 begin
   inherited;
-  DmConexao.sdsProdutos.Filtered := False;
-  DmConexao.sdsProdutos.IndexFieldNames := DBGrid1.SelectedField.FieldName;
-  DmConexao.sdsProdutos.FindNearest([edtPesquisa.Text]);
+  DmConexao.sdsEstoque.Filtered := False;
+  DmConexao.sdsEstoque.IndexFieldNames := DBGrid1.SelectedField.FieldName;
+  DmConexao.sdsEstoque.FindNearest([edtPesquisa.Text]);
 end;
 
 procedure TviewEstoque.btnSalvarClick(Sender: TObject);

@@ -5,14 +5,15 @@ inherited viewEstoque: TviewEstoque
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
-      Width = 68
+      Width = 903
+      Height = 29
       Caption = 'Estoque'
       ExplicitWidth = 68
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
-      ActivePage = tbsCadastro
+      ActivePage = tsConsulta
       inherited tbsCadastro: TTabSheet
         object lblData: TLabel [0]
           Left = 167
@@ -65,9 +66,9 @@ inherited viewEstoque: TviewEstoque
         end
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
-            Width = 147
+            Width = 127
             Caption = '     [ ESTOQUE ]'
-            ExplicitWidth = 147
+            ExplicitWidth = 127
           end
         end
         inherited DBEdit1: TDBEdit
@@ -100,6 +101,18 @@ inherited viewEstoque: TviewEstoque
           DataSource = DmConexao.dsEstoque
           TabOrder = 3
         end
+        object lookupProd: TDBLookupComboBox
+          Left = 512
+          Top = 121
+          Width = 177
+          Height = 21
+          DataField = 'PRODUTO'
+          DataSource = DmConexao.dsEstoque
+          KeyField = 'PROD_ID'
+          ListField = 'PROD_DESCRICAO'
+          ListSource = DmConexao.dsProdutos
+          TabOrder = 5
+        end
       end
       inherited tsConsulta: TTabSheet
         inherited pnlPesquisa: TPanel
@@ -113,7 +126,7 @@ inherited viewEstoque: TviewEstoque
           Width = 1012
           Height = 370
           Align = alClient
-          DataSource = DmConexao.dsProdutos
+          DataSource = DmConexao.dsEstoque
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -123,21 +136,34 @@ inherited viewEstoque: TviewEstoque
           Columns = <
             item
               Expanded = False
-              FieldName = 'PROD_ID'
-              Title.Caption = 'ID'
+              FieldName = 'ID'
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'PROD_DESCRICAO'
-              Title.Caption = 'Descri'#231#227'o'
+              FieldName = 'DATA'
+              Title.Caption = 'Data de Cadastro'
+              Width = 120
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'QTDTOTAL'
+              FieldName = 'Nome do Produto'
+              Width = 300
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'QTD'
               Title.Caption = 'Quantidade'
-              Width = 100
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'TOTAL'
+              Title.Caption = 'Total'
+              Width = 200
               Visible = True
             end>
         end

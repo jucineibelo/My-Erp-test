@@ -1,6 +1,5 @@
 inherited viewFuncionarios: TviewFuncionarios
   Caption = 'viewFuncionarios'
-  PixelsPerInch = 96
   TextHeight = 13
   inherited panelTop: TPanel
     inherited lblTitulo: TLabel
@@ -13,18 +12,13 @@ inherited viewFuncionarios: TviewFuncionarios
   inherited pnlLinhaFundo: TPanel
     inherited PageControl1: TPageControl
       inherited tbsCadastro: TTabSheet
-        OnShow = tbsCadastroShow
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
         inherited Panel1: TPanel
           inherited lblTituloCadastro: TLabel
             Left = 394
-            Width = 263
+            Width = 233
             Caption = '[ Cadastro de Funcion'#225'rios]'
             ExplicitLeft = 394
-            ExplicitWidth = 263
+            ExplicitWidth = 233
           end
         end
         object Panel2: TPanel
@@ -114,7 +108,7 @@ inherited viewFuncionarios: TviewFuncionarios
             DataField = 'SENHA'
             DataSource = DmConexao.dsFuncionarios
             PasswordChar = '*'
-            TabOrder = 0
+            TabOrder = 5
           end
           object edtUsuario: TDBEdit
             Left = 208
@@ -157,17 +151,18 @@ inherited viewFuncionarios: TviewFuncionarios
             Top = 61
             Width = 104
             Height = 21
-            DataField = 'CARGO'
+            DataField = 'DATA_CADASTRO'
             DataSource = DmConexao.dsFuncionarios
-            TabOrder = 5
+            TabOrder = 0
           end
         end
       end
       inherited tsConsulta: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1012
-        ExplicitHeight = 435
+        inherited pnlPesquisa: TPanel
+          inherited btnPesquisa: TButton
+            OnClick = btnPesquisaClick
+          end
+        end
         object DBGrid1: TDBGrid
           Left = 0
           Top = 65
@@ -208,9 +203,6 @@ inherited viewFuncionarios: TviewFuncionarios
       inherited btnEditar: TSpeedButton
         Enabled = False
         Visible = False
-      end
-      inherited btnSalvar: TSpeedButton
-        OnClick = btnSalvarClick
       end
       inherited btnExcluir: TSpeedButton
         Enabled = False

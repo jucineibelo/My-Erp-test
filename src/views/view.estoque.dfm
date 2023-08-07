@@ -149,13 +149,21 @@ inherited viewEstoque: TviewEstoque
             item
               Expanded = False
               FieldName = 'Nome do Produto'
-              Width = 200
+              Width = 300
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'QTD'
               Title.Caption = 'Quantidade'
+              Width = 200
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'TOTAL'
+              Title.Caption = 'Total'
+              Width = 200
               Visible = True
             end>
         end

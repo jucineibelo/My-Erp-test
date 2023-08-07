@@ -69,7 +69,7 @@ begin
   begin
     DataSet.Last;   // Último registro
     registro := DataSet.FieldByName(IDField).AsInteger + 1;
-    DataSet.Append; // Coloca o dataset em modo de inserção
+    DataSet.Append; // Coloca o dataset em modo de inserção / antes eu usava DataSet.Insert;
     DataSet.FieldByName(IDField).AsInteger := registro; // Atribuir o novo ID ao novo registro
     CampoData.AsDateTime := Now;
   end;

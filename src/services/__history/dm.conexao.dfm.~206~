@@ -179,18 +179,14 @@ object DmConexao: TDmConexao
     end
   end
   object sdsFornecedores: TFDQuery
+    Active = True
     Connection = SQLConexao
     SQL.Strings = (
-      
-        'select f.fornecedor_id, f.fornecedor_razao, f.fornecedor_telefon' +
-        'e, f.fornecedor_cpf, f.fornecedor_cnpj, f.fornecedor_rg, f.forne' +
-        'cedor_ie,'
-      
-        'f.fornecedor_obs, f.fornecedor_endereco, f.data_cadastro, f.forn' +
-        'ecedor_cidade, f.fornecedor_estado, f.fornecedor_tipo,'
+      'select f.*,'
       'case when f.fornecedor_tipo = '#39'J'#39' then f.fornecedor_cnpj'
       'else f.fornecedor_cpf end as tipo_Pessoa'
-      'from fornecedores f')
+      'from fornecedores f'
+      'order by f.fornecedor_id asc')
     Left = 38
     Top = 152
     object sdsFornecedoresFORNECEDOR_ID: TIntegerField
@@ -332,7 +328,10 @@ object DmConexao: TDmConexao
   object sdsEstoque: TFDQuery
     Connection = SQLConexao
     SQL.Strings = (
-      'select * from estoque')
+      'select e.*, p.prod_descricao "Nome do Produto"'
+      'from estoque e'
+      'inner join produtos p'
+      'on p.prod_id = e.produto')
     Left = 38
     Top = 286
     object sdsEstoqueID: TIntegerField
@@ -360,11 +359,20 @@ object DmConexao: TDmConexao
       FieldName = 'OBS'
       Origin = 'OBS'
     end
+    object sdsEstoqueNomedoProduto: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Nome do Produto'
+      Origin = 'PROD_DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
   end
   object sdsFuncionarios: TFDQuery
     Connection = SQLConexao
     SQL.Strings = (
-      'select * from funcionarios')
+      'select f.* from funcionarios f'
+      'order by f.CODIGO asc')
     Left = 38
     Top = 350
     object sdsFuncionariosCODIGO: TIntegerField
